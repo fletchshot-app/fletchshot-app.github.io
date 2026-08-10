@@ -266,6 +266,23 @@ section > .wrap > p, .prose p { margin-top: 18px; color: var(--muted); max-width
 }
 .media img, .media video { display: block; width: 100%; height: auto; }
 .media figcaption { margin-top: 10px; font-size: 0.82rem; color: var(--muted); }
+/* 図解バッジ: アニメーション図解の枠に「実写ではない」ことを視認でも明示（aria-labelとの整合）。
+   実写フォールバック画像に差し替わった枠では lp.js が data-diagram を外す */
+.media .frame[data-diagram]::after {
+  content: attr(data-diagram);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 3px 9px;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--pink);
+  background: var(--card);
+  border: 1px solid var(--pink);
+  opacity: 0.92;
+  pointer-events: none;
+}
 
 /* 捨てるものリスト */
 .refuse { margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px 24px; }

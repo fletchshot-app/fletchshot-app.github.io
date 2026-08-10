@@ -1,13 +1,451 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex"><title>FletchShot</title><link rel="stylesheet" href="style.css"></head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FletchShot — 撮る・描く・渡すを3秒で</title>
+<meta name="description" content="撮る・描く・渡すを3秒で。スクリーンショット注釈に、画面録画・GIF・OCR・キャプチャ履歴まで載せて、設定は最小限。Skitchの操作感を受け継ぐApple Siliconネイティブ、14日間無料・以降は¥1,500の買い切り、通信ゼロのmacOSアプリ。">
+<meta property="og:title" content="FletchShot — 撮る・描く・渡すを3秒で">
+<meta property="og:description" content="機能は豊かに、手触りは軽く。録画・GIF・OCRまで載せて設定は最小限。14日間無料・以降は¥1,500の買い切り、通信ゼロ。Mac App Storeで配信中。">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
-<main style="max-width:36rem;margin:20vh auto 0;padding:0 1.5rem;text-align:center">
-  <h1>FletchShot</h1>
-  <p>近日公開</p>
-  <p>お問い合わせ: <a href="mailto:support@fletchshot.app">support@fletchshot.app</a></p>
-  <p><a href="privacy-ja.html">プライバシーポリシー</a></p>
+
+<header class="site">
+  <a class="wordmark" href="#">
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 16 L13 5 L11 3 L16 2 L15 7 L13 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    FletchShot
+  </a>
+  <nav class="nav" aria-label="サイト内">
+    <a class="navlink" href="#features">機能</a>
+    <a class="navlink" href="#pricing">価格</a>
+    <a class="navlink" href="#faq">FAQ</a>
+    <a class="navcta storecta" data-store href="#">App Storeで入手</a>
+    <span class="lang" aria-label="言語"><a href="index.html">EN</a> · <strong>日本語</strong></span>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <canvas id="arrowCanvas" aria-hidden="true"></canvas>
+    <div class="wrap-wide hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">macOSのスクリーンショット注釈ツール</p>
+        <h1>撮る・描く・渡すを<br><span class="accent">3秒</span>で</h1>
+        <p class="sub" id="arrowFrom">撮った瞬間に注釈ウィンドウが開き、<strong>矢印はもう選ばれています</strong>。描き終えたら<strong>ウィンドウ下端のタブをつまんで、SlackやFinder、ターミナルへそのままドラッグ</strong>。画面録画もGIFもOCRも載っていて、それでも設定は最小限、通信はゼロ。<strong>まずは14日間、保存・コピー・共有まで無料でお試しください</strong>。気に入ったら¥1,500の買い切りで、ずっと使えます。</p>
+
+        <div class="capture-decor" aria-hidden="true">
+          <span class="handle" style="top:-4px;left:-4px"></span>
+          <span class="handle" style="top:-4px;left:calc(50% - 3.5px)"></span>
+          <span class="handle" style="top:-4px;right:-4px"></span>
+          <span class="handle" style="top:calc(50% - 3.5px);left:-4px"></span>
+          <span class="handle" style="top:calc(50% - 3.5px);right:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:calc(50% - 3.5px)"></span>
+          <span class="handle" style="bottom:-4px;right:-4px"></span>
+          <span class="readout mono" aria-hidden="true">480 × 200</span>
+        </div>
+
+        <div class="cta-block" id="get">
+          <a class="storecta primary" data-store href="#" aria-label="FletchShot を Mac App Store で入手">
+            <span class="storecta-label">Mac App Store で入手</span>
+          </a>
+          <p class="ctanote">macOS 14以降 ・ 14日間無料、以降は¥1,500の買い切り ・ アカウントなし、クラウドなし、通信ゼロ。</p>
+        </div>
+      </div>
+      <div class="hero-shot">
+        <figure class="media" data-media>
+          <div class="frame">
+            <span class="handle" style="top:-4px;left:-4px"></span>
+            <span class="handle" style="top:-4px;right:-4px"></span>
+            <span class="handle" style="bottom:-4px;left:-4px"></span>
+            <span class="handle" style="bottom:-4px;right:-4px"></span>
+            <video src="media/hero-loop.mp4" poster="media/hero-window.png" data-fallback="media/hero-window.png" autoplay muted loop playsinline preload="metadata" aria-label="FletchShotのループデモ。撮影、ピンクのテーパー矢印、下端のドラッグタブ"></video>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <section id="demo">
+    <div class="wrap-wide">
+      <p class="kicker">実物</p>
+      <h2 class="head">3秒は、この速さ</h2>
+      <figure class="media" data-media>
+        <div class="frame">
+          <span class="handle" style="top:-4px;left:-4px"></span>
+          <span class="handle" style="top:-4px;right:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:-4px"></span>
+          <span class="handle" style="bottom:-4px;right:-4px"></span>
+          <video src="media/demo-full.mp4" poster="media/demo-full-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="ホットキーから撮影・矢印注釈・ドラッグタブで渡すまでの実機デモ（等倍速）"></video>
+        </div>
+        <figcaption>実機収録・等倍速——ホットキー→範囲選択→矢印→ドラッグタブでSlackへ</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">3つの約束</p>
+      <h2 class="head">機能は豊かに、手触りは軽く</h2>
+      <div class="four">
+        <div class="item">
+          <h3><span class="n mono">1</span>速い</h3>
+          <p>ホットキーから撮影まで、撮影から注釈まで。遅延はミリ秒単位の予算として仕様に書き、それを壊す機能は載せません。速度は機能です。</p>
+        </div>
+        <div class="item">
+          <h3><span class="n mono">2</span>多機能でも、軽い</h3>
+          <p>画面録画・GIF・OCR・キャプチャ履歴まで載せています。ただし設定は1機能あたり最小限——既定値のまま3秒で使えて、ダイアルの森で迷わせません。</p>
+        </div>
+        <div class="item">
+          <h3><span class="n mono">3</span>何も外に出ない</h3>
+          <p>通信はゼロ。スクリーンショットも録画もこのMacの外には出ません。アカウントなし、クラウドなし。14日間無料・以降は¥1,500の買い切りで、サブスクリプションは一切ありません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap-wide">
+      <p class="kicker">描く</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">撮った瞬間、もう矢印を握っている</h2>
+          <p>撮影が確定すると同時にキャンバスが開き、<strong>矢印ツールは選択済み</strong>。保存ダイアログもモード選択も挟みません。</p>
+          <p>矢印は描き始めが細く、言いたいことの先端に向かって太くなる<strong>一枚の塗り面</strong>です。色はもちろんピンク。</p>
+          <p>9色に任意色ピッカーを添えて。直近に使った8色は1タップで戻せます。</p>
+          <p>注釈はすべてオブジェクトなので、あとから選び直し・移動・削除が自由です。Undoは実用上無制限——描き直しを恐れず描けます。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="動きの図解">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/annotate.mp4" poster="media/annotate-poster.png" data-fallback="media/annotate.png" autoplay muted loop playsinline preload="metadata" aria-label="注釈ウィンドウのアニメーション図解。ピンクのテーパー矢印がひとドラッグで描かれ、番号スタンプが押される"></video>
+            </div>
+            <figcaption>注釈ウィンドウ——矢印は一枚の塗り面、下端にドラッグタブ</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">渡す</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">下端のタブをつまんでSlackへ</h2>
+          <p>描き終えたらウィンドウ下端のタブをドラッグするだけ。<strong>SlackでもメールでもFinderでもターミナルでも</strong>、画像ファイルとしてそのまま落ちます。</p>
+          <p>途中に現れるダイアログはゼロ。「書き出し→保存先→添付」という儀式が丸ごと消えます。</p>
+          <p>クリップボード派には、⌘⇧Cで「コピーして閉じる」まで一撃です。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="動きの図解">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/handoff.mp4" poster="media/handoff-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="ウィンドウ下端のドラッグタブで注釈済み画像をチャットへ渡すアニメーション図解"></video>
+            </div>
+            <figcaption>つまんで落とすまでダイアログゼロ</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">撮る</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">同じ範囲をもう一度</h2>
+          <p><strong>前回の選択範囲を覚えていて、1操作で再撮影できます</strong>。手順書やバグ報告のように、同じ画面を何度も撮る作業でいちばん効きます。</p>
+          <p>ウィンドウ単位のキャプチャも1キーで。ピクセルをなぞって枠を合わせる作業は、もう要りません。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="動きの図解">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/capture.mp4" poster="media/capture-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="同じ範囲の再撮影のアニメーション図解。一度選択すればホットキーだけで同じ矩形が撮れる"></video>
+            </div>
+            <figcaption>前回の範囲をそのまま再撮影——選択のやり直しがない</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">録る</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">動くものは録画で見せる</h2>
+          <p>画面録画は<strong>全画面・範囲・ウィンドウ</strong>の3通り。クリック操作の表示もワンタップで切り替えられます。</p>
+          <p>書き出しはフッタで<strong>MP4/GIF</strong>を選ぶだけ、画質は<strong>高／中／低</strong>の3段だけ。既定の「中」で撮って忘れてよく、Slackへ軽く投げたいときだけ「低」に落とす——ダイアルの森は作りません。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="動きの図解">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/recording.mp4" poster="media/recording-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="画面録画のアニメーション図解。クリックハイライト付きで録画し、スイッチひとつでMP4/GIFを切り替える"></video>
+            </div>
+            <figcaption>録画バーからMP4/GIFを切り替えて書き出し</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">撮る</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">撮った画像を画面に貼っておく</h2>
+          <p>ピン留めで、撮った画像を<strong>最前面に浮かせたまま</strong>作業できます。デザインの差分確認や、手順を横目に見ながらの操作に。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="動きの図解">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/pin.mp4" poster="media/pin-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="ピン留めのアニメーション図解。他のウィンドウが背後を横切ってもピン留めした画像は最前面に残る"></video>
+            </div>
+            <figcaption>ピン留めで最前面に固定</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">渡す</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">文字は文字のまま渡す</h2>
+          <p>OCRで画面の中のテキストを抽出します。エラーメッセージも表の中身も、画像ではなく<strong>貼り付けられる文字</strong>で渡せます。</p>
+          <p><strong>画面のJSONを撮ると、クリップボードには整形済みで届きます。</strong> 設定もボタンもなし——読めれば整形、読めなければ生のまま。</p>
+          <p>処理は<strong>端末内</strong>で完結します（AppleのVisionフレームワーク）。外部送信は一切ありません。日本語と英語から対応します。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="動きの図解">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/ocr.mp4" poster="media/ocr-poster.png" data-fallback="media/ocr.png" autoplay muted loop playsinline preload="metadata" aria-label="OCRのアニメーション図解。スキャンラインが通るとピクセルが選択可能なテキストに変わり、JSONは整形済みでクリップボードに載る"></video>
+            </div>
+            <figcaption>選べないテキストも文字として取り出す</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">渡す</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">さっきのをもう一回</h2>
+          <p>キャプチャ履歴は50件。「あの画像、もう一度ください」に<strong>3秒で応えられます</strong>。</p>
+          <p>保存先は<strong>このMacの中だけ</strong>。クラウドには何も置きません。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="動きの図解">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/history.mp4" poster="media/history-poster.png" data-fallback="media/history.png" autoplay muted loop playsinline preload="metadata" aria-label="キャプチャ履歴のアニメーション図解。サムネイルが並び、1枚を摘んで再送する"></video>
+            </div>
+            <figcaption>直近50件をローカルに自動保持</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">まだある</p>
+      <h2 class="head">細部まで、3秒のために</h2>
+      <div class="four mini">
+        <div class="item">
+          <h3>セルフタイマー</h3>
+          <p>メニューやホバー中のUIのような「撮ろうとすると消えるもの」を逃しません。</p>
+        </div>
+        <div class="item">
+          <h3>ファイル名は好みで</h3>
+          <p><strong>{date} {time} {index}</strong> の3語で組む簡単テンプレート——チームの命名規則に一度で揃います。</p>
+        </div>
+        <div class="item">
+          <h3>番号スタンプ</h3>
+          <p>1→2→3と置いていくだけで手順書が仕上がります。書式は1/A/a/iから選べます。</p>
+        </div>
+        <div class="item">
+          <h3>モザイク</h3>
+          <p>見せたくない場所をひと塗りで隠せます。共有前の身だしなみに。</p>
+        </div>
+        <div class="item">
+          <h3>蛍光ペン・図形・テキスト</h3>
+          <p>矢印以外の道具もひと並びに。ウィンドウが縮んだときだけ、収まらない分がメニューに畳まれます。</p>
+        </div>
+        <div class="item">
+          <h3>Shortcuts連携</h3>
+          <p>注釈済みの画像や動画を自作のショートカットに渡せます。リネームも振り分けも自由です。</p>
+        </div>
+        <div class="item">
+          <h3>ホットキー ⌥⌘4</h3>
+          <p>手に馴染んだ既定のまま。もちろん変更もできます。</p>
+        </div>
+        <div class="item">
+          <h3>テキストのフォント4択</h3>
+          <p>標準・明朝・マジック・丸文字。吹き出しの空気ごと切り替わります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <p class="kicker">価格</p>
+      <h2 class="head">14日間、まるごと無料。その先は買い切り</h2>
+      <div class="deal">
+        <div class="price">¥1,500<small>買い切り（14日間の無料トライアルつき）</small></div>
+        <ul>
+          <li>Mac App Storeから無料でダウンロード——アプリ内のボタンで14日間トライアルを開始</li>
+          <li>トライアル中は制限なし。撮影・注釈・録画・OCR、すべて使えます</li>
+          <li>14日を過ぎても「撮る」「描く」はずっと無料。保存・コピー・共有を使うときに¥1,500の買い切りアンロック</li>
+          <li>サブスクなし・アカウントなし・自動更新なし</li>
+          <li>Apple Siliconネイティブ、macOS 14+ ・ 通信ゼロ——スクショはMacの外に出ない</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <p class="kicker">FAQ</p>
+      <h2 class="head">よくある質問</h2>
+      <div class="faq">
+        <details>
+          <summary>いつ使える？</summary>
+          <p>いますぐお使いいただけます。FletchShotはMac App Storeで配信中——ダウンロード無料、14日間の無料トライアル、以降は買い切りアンロックです。アカウント登録は要りません。次のメジャーアップデートの案内が欲しい方向けに、このFAQの末尾に任意のメール登録欄を置いています。</p>
+        </details>
+        <details>
+          <summary>無料で試せる？</summary>
+          <p>試せます——14日間、機能はすべてオンです。アプリを無料でダウンロードし、アプリ内で<strong>「14日間トライアルを開始」</strong>を一度タップすれば、その日から14日間、保存・コピー・共有まで購入版とまったく同じように動きます。トライアル中に課金は発生しません（Appleが決済するのは¥1,500の<strong>「アンロック」</strong>をタップした瞬間だけです）。14日を過ぎても撮影と注釈はずっと無料で使えて、書き出しの4経路——ファイル保存・クリップボードへのコピー・下端のドラッグタブ・共有——を使うときにだけアンロックを求められます。買い切りなので自動更新はありません。</p>
+        </details>
+        <details>
+          <summary>価格は？</summary>
+          <p>ダウンロードは無料で、そこから14日間の無料トライアルです。以降、保存・コピー・共有を使い続けるには<strong>¥1,500（$9.99）</strong>の買い切りアンロックが必要です。サブスクリプションにはしません。ファミリー共有は無効のため、アンロックはApple ID単位です。メジャーアップグレードが有償になる可能性はありますが、購入した版が使えなくなることはありません。</p>
+        </details>
+        <details>
+          <summary>Skitchから乗り換えられる？</summary>
+          <p>乗り換えていただけるように作っています。テーパー矢印の描き味・撮影から注釈までの即時性・ウィンドウ下端のドラッグタブは、実物のSkitch 2.9を採寸して再現しました。ホットキーも既定で⌥⌘4です。Skitchの手に馴染んだ方がそのまま使えることを、最重要の合格基準にしています。</p>
+        </details>
+        <details>
+          <summary>なぜ通信ゼロ？</summary>
+          <p>スクリーンショットは機密の塊だからです。FletchShotはネットワーク通信を行わない設計を仕様として固定しており、OCRも端末内で処理します。スクリーンショットも録画もこのMacの外には出ません。</p>
+        </details>
+        <details>
+          <summary>CleanShot Xとは何が違う？</summary>
+          <p>CleanShot Xは50を超える機能と細かな設定を持つプロ用の道具で、本当によくできています。FletchShotは逆に、「撮って→矢印→渡す」を1日30回、毎回3秒で終わらせる軽さが軸です。支持されている機能はライトに絞って載せますが、設定の細かさでは競いません。クラウド共有とアカウントは意図して持ちません。</p>
+        </details>
+        <details>
+          <summary>対応環境は？</summary>
+          <p>macOS 14以降、Apple Siliconネイティブです。Mac App Storeで配布しています（App Sandbox対応）。</p>
+        </details>
+        <details>
+          <summary>アップデートだけ知りたい</summary>
+          <p>メジャー更新のときに、メールを1通だけお送りします。ニュースレターも第三者提供もありません。</p>
+          <form class="signup mini" novalidate>
+            <input type="hidden" name="source" value="direct">
+            <input type="hidden" name="lang" value="ja">
+            <input type="hidden" name="intent" value="update-notice">
+            <input type="email" name="email" required placeholder="you@example.com" aria-label="メールアドレス">
+            <button type="submit">案内を受け取る</button>
+          </form>
+          <p class="formmsg" role="status"></p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">はじめよう</p>
+      <h2 class="head">毎日のスクショを3秒にする</h2>
+      <div class="capture-decor" aria-hidden="true">
+        <span class="handle" style="top:-4px;left:-4px"></span>
+        <span class="handle" style="top:-4px;left:calc(50% - 3.5px)"></span>
+        <span class="handle" style="top:-4px;right:-4px"></span>
+        <span class="handle" style="top:calc(50% - 3.5px);left:-4px"></span>
+        <span class="handle" style="top:calc(50% - 3.5px);right:-4px"></span>
+        <span class="handle" style="bottom:-4px;left:-4px"></span>
+        <span class="handle" style="bottom:-4px;left:calc(50% - 3.5px)"></span>
+        <span class="handle" style="bottom:-4px;right:-4px"></span>
+        <span class="readout mono" aria-hidden="true">480 × 200</span>
+      </div>
+      <div class="cta-block">
+        <a class="storecta primary" data-store href="#" aria-label="FletchShot を Mac App Store で入手">
+          <span class="storecta-label">Mac App Store で入手</span>
+        </a>
+        <p class="ctanote">macOS 14以降 ・ 14日間無料、以降は¥1,500の買い切り。</p>
+      </div>
+    </div>
+  </section>
 </main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>製品</h4>
+        <a href="#demo">実物デモ</a>
+        <a href="#features">機能</a>
+        <a href="#pricing">価格</a>
+        <a href="#faq">FAQ</a>
+        <a href="help-ja.html">ヘルプ</a>
+        <a href="privacy-ja.html">プライバシー</a>
+      </div>
+      <div>
+        <h4>入手</h4>
+        <a data-store href="#">Mac App Store</a>
+        <a href="#faq">アップデート通知</a>
+      </div>
+      <div>
+        <h4>言語</h4>
+        <a href="index.html">English</a>
+        <a href="ja.html">日本語</a>
+      </div>
+    </div>
+    <p><strong>FletchShot</strong> — 言いたいことをまっすぐ飛ばす。<span class="mono">fletch（動詞）: 矢に矢羽根を付け、まっすぐ飛ぶようにすること。</span></p>
+    <p>FletchShotは独立したプロダクトであり、Evernote、Bending Spoons、およびSkitchの開発元とは無関係です。「Skitch」への言及は操作感の互換性を説明する目的に限られます。各商標はそれぞれの権利者に帰属します。</p>
+    <p>このページにアクセス解析はなく、Cookieも使いません。数えるのはストアリンクのクリックとアップデート通知の登録数だけです。</p>
+  </div>
+</footer>
+
+<script src="lp.js"></script>
 </body>
 </html>

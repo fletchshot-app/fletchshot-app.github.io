@@ -1,13 +1,451 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex"><title>FletchShot</title><link rel="stylesheet" href="style.css"></head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FletchShot — Shoot, mark up, hand off. Three seconds.</title>
+<meta name="description" content="Shoot, mark up, hand off — in three seconds. Screenshot annotation with screen recording, GIF export, OCR and capture history on board, yet minimal settings. Carries the Skitch feel forward. Native Apple Silicon, free for 14 days then a one-time $9.99 unlock, zero network calls.">
+<meta property="og:title" content="FletchShot — Shoot, mark up, hand off. Three seconds.">
+<meta property="og:description" content="Rich features, kept light: recording, GIFs and OCR with minimal settings. Free for 14 days, then $9.99 once — no subscription. On the Mac App Store now.">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="ja" href="ja.html">
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
-<main style="max-width:36rem;margin:20vh auto 0;padding:0 1.5rem;text-align:center">
-  <h1>FletchShot</h1>
-  <p>Coming soon</p>
-  <p>Support: <a href="mailto:support@fletchshot.app">support@fletchshot.app</a></p>
-  <p><a href="privacy.html">Privacy Policy</a></p>
+
+<header class="site">
+  <a class="wordmark" href="#">
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 16 L13 5 L11 3 L16 2 L15 7 L13 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    FletchShot
+  </a>
+  <nav class="nav" aria-label="Site">
+    <a class="navlink" href="#features">Features</a>
+    <a class="navlink" href="#pricing">Pricing</a>
+    <a class="navlink" href="#faq">FAQ</a>
+    <a class="navcta storecta" data-store href="#">Get it on the App Store</a>
+    <span class="lang" aria-label="Language"><strong>EN</strong> · <a href="ja.html">日本語</a></span>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <canvas id="arrowCanvas" aria-hidden="true"></canvas>
+    <div class="wrap-wide hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">A screenshot annotation tool for macOS</p>
+        <h1>Shoot, mark up, hand off.<br><span class="accent">Three seconds.</span></h1>
+        <p class="sub" id="arrowFrom">The instant you capture, the annotation window is open and <strong>the arrow tool is already selected</strong>. When you're done, <strong>grab the tab at the bottom edge and drag straight into Slack, Finder, or your terminal</strong>. Screen recording, GIFs, OCR — all on board. Yet settings stay minimal, network traffic stays at zero, and it's <strong>free for 14 days</strong> — then a one-time $9.99 to keep saving, copying, and sharing what you shoot.</p>
+
+        <div class="capture-decor" aria-hidden="true">
+          <span class="handle" style="top:-4px;left:-4px"></span>
+          <span class="handle" style="top:-4px;left:calc(50% - 3.5px)"></span>
+          <span class="handle" style="top:-4px;right:-4px"></span>
+          <span class="handle" style="top:calc(50% - 3.5px);left:-4px"></span>
+          <span class="handle" style="top:calc(50% - 3.5px);right:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:calc(50% - 3.5px)"></span>
+          <span class="handle" style="bottom:-4px;right:-4px"></span>
+          <span class="readout mono" aria-hidden="true">480 × 200</span>
+        </div>
+
+        <div class="cta-block" id="get">
+          <a class="storecta primary" data-store href="#" aria-label="Download FletchShot on the Mac App Store">
+            <span class="storecta-label">Download on the Mac App Store</span>
+          </a>
+          <p class="ctanote">macOS 14 or later · Free 14 days, then $9.99 once · No account, no cloud, zero network calls.</p>
+        </div>
+      </div>
+      <div class="hero-shot">
+        <figure class="media" data-media>
+          <div class="frame">
+            <span class="handle" style="top:-4px;left:-4px"></span>
+            <span class="handle" style="top:-4px;right:-4px"></span>
+            <span class="handle" style="bottom:-4px;left:-4px"></span>
+            <span class="handle" style="bottom:-4px;right:-4px"></span>
+            <video src="media/hero-loop.mp4" poster="media/hero-window.png" data-fallback="media/hero-window.png" autoplay muted loop playsinline preload="metadata" aria-label="Looping demo of FletchShot: capture, pink tapered arrow, drag-away tab at the bottom edge"></video>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <section id="demo">
+    <div class="wrap-wide">
+      <p class="kicker">The real thing</p>
+      <h2 class="head">This is what three seconds looks like.</h2>
+      <figure class="media" data-media>
+        <div class="frame">
+          <span class="handle" style="top:-4px;left:-4px"></span>
+          <span class="handle" style="top:-4px;right:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:-4px"></span>
+          <span class="handle" style="bottom:-4px;right:-4px"></span>
+          <video src="media/demo-full.mp4" poster="media/demo-full-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="Real-app demo at actual speed: hotkey, capture, arrow annotation, drag-away tab into Slack"></video>
+        </div>
+        <figcaption>Recorded from the app, actual speed — hotkey → select → arrow → drag-away tab into Slack</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">Three promises</p>
+      <h2 class="head">Rich features, kept light.</h2>
+      <div class="four">
+        <div class="item">
+          <h3><span class="n mono">1</span>Fast.</h3>
+          <p>Hotkey to capture, capture to canvas: latency is written into the spec as millisecond budgets, and nothing that breaks them ships. Speed is a feature.</p>
+        </div>
+        <div class="item">
+          <h3><span class="n mono">2</span>Rich, but light.</h3>
+          <p>Screen recording, GIFs, OCR, capture history — all included. But each feature gets only a handful of settings: great defaults, three seconds to use, no forest of dials.</p>
+        </div>
+        <div class="item">
+          <h3><span class="n mono">3</span>Nothing leaves.</h3>
+          <p>Zero network calls. Your screenshots and recordings never leave this Mac. No account, no cloud. Free 14 days, then $9.99 once — no subscription, ever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap-wide">
+      <p class="kicker">Mark up</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">By the time you look, the arrow is in your hand.</h2>
+          <p>The canvas opens the moment the capture lands, with <strong>the arrow tool already selected</strong>. No save dialog, no "choose a mode" in between.</p>
+          <p>The arrow is born thin where you start dragging and swells toward the point it's making — <strong>one filled shape</strong>, not a line wearing a hat. Pink, obviously.</p>
+          <p>Nine colors and a picker for any other — the last eight you chose stay one click away.</p>
+          <p>Every annotation is an object: reselect, move, delete at will, with practically unlimited undo. Draw without fear.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="How it works">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/annotate.mp4" poster="media/annotate-poster.png" data-fallback="media/annotate.png" autoplay muted loop playsinline preload="metadata" aria-label="Animated diagram of the FletchShot annotation window: a pink tapered arrow drawn in one drag, then numbered stamps"></video>
+            </div>
+            <figcaption>The annotation window — the arrow is one filled shape, the drag-away tab waits at the bottom</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Hand off</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">Grab the tab, drop it into Slack.</h2>
+          <p>When you're done drawing, just drag the tab at the bottom edge. <strong>Slack, Mail, Finder, your terminal</strong> — it lands as a real image file.</p>
+          <p>Zero dialogs along the way. The whole export–save–attach ritual simply disappears.</p>
+          <p>Prefer the clipboard? ⌘⇧C copies and closes in one shot.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="How it works">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/handoff.mp4" poster="media/handoff-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="Animated diagram of dragging the tab at the bottom edge to hand an annotated image to a chat app"></video>
+            </div>
+            <figcaption>Pinch, drag, drop — zero dialogs along the way</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Shoot</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">Same region, again.</h2>
+          <p><strong>It remembers your last selection and re-shoots it in one move.</strong> On days you capture the same screen over and over — docs, bug reports — nothing saves more time.</p>
+          <p>Window capture is one key, too. Stop tracing pixel edges by hand.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="How it works">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/capture.mp4" poster="media/capture-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="Animated diagram of re-shooting the same region: after one selection, a hotkey re-captures the identical rectangle"></video>
+            </div>
+            <figcaption>Re-shoot the exact same region — no re-selecting</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Record</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">When it moves, show it moving.</h2>
+          <p>Screen recording, three ways: <strong>full screen, area, or window</strong>. Click highlights toggle with one tap.</p>
+          <p>Export is a footer switch between <strong>MP4 and GIF</strong>. Quality is one dropdown: <strong>High, Medium, Low</strong> — pick "Medium" and forget it; drop to "Low" when you need a light file for Slack. No forest of dials.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="How it works">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/recording.mp4" poster="media/recording-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="Animated diagram of screen recording: click highlights during capture, then one switch flips the export between MP4 and GIF"></video>
+            </div>
+            <figcaption>Record, then flip a switch for MP4 or GIF</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Shoot</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">Pin it to the screen.</h2>
+          <p>Float any capture <strong>on top of everything</strong> and work with it side by side — design diffs, or following steps while you work.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="How it works">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/pin.mp4" poster="media/pin-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="Animated diagram of pinning a capture: other windows pass behind while the pinned capture stays on top"></video>
+            </div>
+            <figcaption>Pinned and always on top</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Hand off</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">Text as text.</h2>
+          <p>OCR pulls the text out of any capture. Error messages, table contents — hand them off as <strong>paste-able characters</strong>, not pixels.</p>
+          <p><strong>Catch a JSON response on screen and it lands on your clipboard already indented.</strong> No settings, no button — if it parses, it's reformatted; if it doesn't, you get the raw text.</p>
+          <p>Processed <strong>on-device</strong> (Apple's Vision framework). Nothing is ever sent anywhere. English and Japanese first.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="How it works">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/ocr.mp4" poster="media/ocr-poster.png" data-fallback="media/ocr.png" autoplay muted loop playsinline preload="metadata" aria-label="Animated diagram: a scan line passes over a capture and the pixels become selectable text, with JSON landing on the clipboard already indented"></video>
+            </div>
+            <figcaption>Unselectable text, extracted as text</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Hand off</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">That one from a minute ago.</h2>
+          <p>Capture history, 50 items. <strong>"Can you send that again?" takes three seconds.</strong></p>
+          <p>Stored <strong>on this Mac only</strong>. Nothing goes to a cloud.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="How it works">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/history.mp4" poster="media/history-poster.png" data-fallback="media/history.png" autoplay muted loop playsinline preload="metadata" aria-label="Animated diagram of the capture history panel: thumbnails of recent captures appear, and one is picked up and dragged out to send again"></video>
+            </div>
+            <figcaption>The last 50 captures, kept locally</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">And more</p>
+      <h2 class="head">Small things, all serving the three seconds.</h2>
+      <div class="four mini">
+        <div class="item">
+          <h3>Self-timer</h3>
+          <p>Menus and hover states — the things that vanish when you try to shoot them — stay in frame.</p>
+        </div>
+        <div class="item">
+          <h3>Filename, your way</h3>
+          <p>Templates with <strong>{date} {time} {index}</strong> — set once, name every capture the way your team files them.</p>
+        </div>
+        <div class="item">
+          <h3>Numbered stamps</h3>
+          <p>Drop 1→2→3 and the walkthrough writes itself. Formats: 1/A/a/i.</p>
+        </div>
+        <div class="item">
+          <h3>Pixelate</h3>
+          <p>One swipe over anything you'd rather not share.</p>
+        </div>
+        <div class="item">
+          <h3>Highlighter, shapes, text</h3>
+          <p>The rest of the toolbar. Each stays in one row until the window shrinks — then overflow tucks itself into a menu.</p>
+        </div>
+        <div class="item">
+          <h3>Shortcuts integration</h3>
+          <p>Hand annotated images and recordings to your own Shortcuts — rename, sort, route.</p>
+        </div>
+        <div class="item">
+          <h3>Hotkey ⌥⌘4</h3>
+          <p>The default your hands already know. Changeable, of course.</p>
+        </div>
+        <div class="item">
+          <h3>Text, four fonts</h3>
+          <p>System, serif, marker, or handwritten round — the whole feel of a callout in a tap.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <p class="kicker">The deal</p>
+      <h2 class="head">Free for 14 days. Then pay once.</h2>
+      <div class="deal">
+        <div class="price">$9.99<small>one-time, after a 14-day free trial</small></div>
+        <ul>
+          <li>Download free from the Mac App Store — the 14-day trial starts inside the app, whenever you tap it</li>
+          <li>Everything works during the trial: capture, annotate, record, OCR, all of it</li>
+          <li>After 14 days, capturing and drawing stay free forever; saving, copying, and sharing ask for the one-time $9.99 unlock</li>
+          <li>No subscription, no account, no auto-renewal</li>
+          <li>Native Apple Silicon, macOS 14+ · Zero network calls — your screenshots never leave your Mac</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <p class="kicker">FAQ</p>
+      <h2 class="head">Questions, answered.</h2>
+      <div class="faq">
+        <details>
+          <summary>When can I use it?</summary>
+          <p>Right now. FletchShot is on the Mac App Store — free to download, free to try for 14 days, then a one-time unlock. No account. If you need a heads-up when the next major version lands, there's an optional email box at the bottom of this FAQ.</p>
+        </details>
+        <details>
+          <summary>Is there a free trial?</summary>
+          <p>Yes — 14 days, everything on. Download the app for free, tap <strong>"Start 14-day trial"</strong> once inside the app, and saving, copying, and sharing work exactly like the paid version until the trial ends. Nothing is charged during the trial (Apple takes payment only when you tap <strong>"Unlock"</strong> at $9.99). After the 14 days, capturing and drawing stay free forever; the export routes — file save, clipboard copy, drag-away tab, share sheet — are what ask you to unlock. It's a one-time purchase, so there's nothing to auto-renew.</p>
+        </details>
+        <details>
+          <summary>How much will it cost?</summary>
+          <p>Free to download, free for a 14-day trial. After that, a one-time <strong>$9.99</strong> unlock keeps saving, copying, and sharing available forever. No subscription. Family Sharing is off, so the unlock is per Apple ID. Major upgrades may someday be paid, but the version you buy keeps working.</p>
+        </details>
+        <details>
+          <summary>Can I switch from Skitch?</summary>
+          <p>That's exactly what it's built for. The tapered arrow's feel, the shot-to-annotation immediacy, and the drag-away tab were measured against a real copy of Skitch 2.9 and rebuilt to match. The default hotkey is ⌥⌘4, too. "A Skitch hand can use it without relearning anything" is our most important acceptance test.</p>
+        </details>
+        <details>
+          <summary>Why zero network calls?</summary>
+          <p>Because screenshots are full of secrets. FletchShot's spec pins networking at zero: OCR runs on-device, and neither screenshots nor recordings ever leave your Mac.</p>
+        </details>
+        <details>
+          <summary>How is this different from CleanShot X?</summary>
+          <p>CleanShot X is a genuinely excellent pro tool with 50+ features and deep settings. FletchShot goes the other way: it's built around doing "shoot → arrow → hand off" thirty times a day, three seconds each. We carry the best-loved features in light versions, but we don't compete on settings depth — and we deliberately have no cloud and no accounts.</p>
+        </details>
+        <details>
+          <summary>What does it run on?</summary>
+          <p>macOS 14 or later, native on Apple Silicon. Distributed through the Mac App Store (App Sandbox).</p>
+        </details>
+        <details>
+          <summary>Just want to hear about the next update?</summary>
+          <p>Leave your email below and you'll get one message when a major version ships. That's all — no newsletter, no sharing.</p>
+          <form class="signup mini" novalidate>
+            <input type="hidden" name="source" value="direct">
+            <input type="hidden" name="lang" value="en">
+            <input type="hidden" name="intent" value="update-notice">
+            <input type="email" name="email" required placeholder="you@example.com" aria-label="Email address">
+            <button type="submit">Keep me posted</button>
+          </form>
+          <p class="formmsg" role="status"></p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">Get started</p>
+      <h2 class="head">Make every screenshot a three-second job.</h2>
+      <div class="capture-decor" aria-hidden="true">
+        <span class="handle" style="top:-4px;left:-4px"></span>
+        <span class="handle" style="top:-4px;left:calc(50% - 3.5px)"></span>
+        <span class="handle" style="top:-4px;right:-4px"></span>
+        <span class="handle" style="top:calc(50% - 3.5px);left:-4px"></span>
+        <span class="handle" style="top:calc(50% - 3.5px);right:-4px"></span>
+        <span class="handle" style="bottom:-4px;left:-4px"></span>
+        <span class="handle" style="bottom:-4px;left:calc(50% - 3.5px)"></span>
+        <span class="handle" style="bottom:-4px;right:-4px"></span>
+        <span class="readout mono" aria-hidden="true">480 × 200</span>
+      </div>
+      <div class="cta-block">
+        <a class="storecta primary" data-store href="#" aria-label="Download FletchShot on the Mac App Store">
+          <span class="storecta-label">Download on the Mac App Store</span>
+        </a>
+        <p class="ctanote">macOS 14 or later · Free 14 days, then $9.99 once.</p>
+      </div>
+    </div>
+  </section>
 </main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Product</h4>
+        <a href="#demo">Live demo</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="help.html">Help</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+      <div>
+        <h4>Get it</h4>
+        <a data-store href="#">Mac App Store</a>
+        <a href="#faq">Update notice</a>
+      </div>
+      <div>
+        <h4>Language</h4>
+        <a href="index.html">English</a>
+        <a href="ja.html">日本語</a>
+      </div>
+    </div>
+    <p><strong>FletchShot</strong> — make your point fly straight. <span class="mono">fletch (v.): to fit an arrow with feathers so it flies true.</span></p>
+    <p>FletchShot is an independent product. It is not affiliated with, endorsed by, or connected to Evernote, Bending Spoons, or the makers of Skitch. "Skitch" is referenced only to describe compatibility of feel; all trademarks belong to their respective owners.</p>
+    <p>This page has no analytics and sets no cookies. The only things it can count are Store-link clicks and update-notice signups.</p>
+  </div>
+</footer>
+
+<script src="lp.js"></script>
 </body>
 </html>

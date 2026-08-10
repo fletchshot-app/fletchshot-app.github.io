@@ -13,7 +13,7 @@ var FORM_ENDPOINT = "https://formspree.io/f/mgojqeqw";
    プレースホルダ（idXXXXXXXXXX を含む）のままだと [data-store] は
    全ボタンがdisabled表示になる（誤って古いリンクを撒かないための安全弁）。
    ============================================================ */
-var APP_STORE_URL = "https://apps.apple.com/app/idXXXXXXXXXX"; // TODO: replace at launch
+var APP_STORE_URL = "https://apps.apple.com/app/id6789836061";
 
 /* ============================================================
    （任意）ストアCTAクリックの自前計測エンドポイント（outbound beacon）。
@@ -78,14 +78,14 @@ var STORE_BEACON_ENDPOINT = "";
           if (!r.ok) throw new Error("bad status");
           msg.className = "formmsg ok";
           msg.textContent = lang === "ja"
-            ? "登録した。次のメジャーアップデートまで、他には何も送らない。"
+            ? "登録しました。次のメジャーアップデートまで、他には何もお送りしません。"
             : "You're in. Next email is the next major release.";
           form.reset();
         })
         .catch(function () {
           msg.className = "formmsg err";
           msg.textContent = lang === "ja"
-            ? "送信に失敗した。時間をおいてもう一度試してほしい。"
+            ? "送信に失敗しました。時間をおいて、もう一度お試しください。"
             : "Something failed. Please try again in a moment.";
         })
         .finally(function () {
@@ -96,12 +96,42 @@ var STORE_BEACON_ENDPOINT = "";
 
   /* --- 実機メディア枠 ---
      素材（lp/media/）が未配置・読み込み失敗の figure は枠ごと隠す。
-     公開時に素材が揃っていなくてもページが破れない保険。 */
+     公開時に素材が揃っていなくてもページが破れない保険。
+     例外: data-fallback 付きの video は隠さず静止画に差し替える
+     （ヒーローのループ動画が未収録でも hero-window.png で絵を出すため）。
+     #demo 節（主役デモ）だけは figure 単体でなく節ごと隠し、
+     節へ飛ぶリンク（フッタ「Live demo／実物デモ」）も一緒に消す——
+     見出しだけの空節と行き先のないリンクを残さないため。 */
   var reduceMotionMedia = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function hideMediaFigure(fig) {
+    var sec = fig.closest("section");
+    if (sec && sec.id === "demo") {
+      sec.style.display = "none";
+      document.querySelectorAll('a[href="#demo"]').forEach(function (a) {
+        a.style.display = "none";
+      });
+      return;
+    }
+    fig.style.display = "none";
+  }
   document.querySelectorAll("figure[data-media]").forEach(function (fig) {
     var m = fig.querySelector("img, video");
     if (!m) return;
-    m.addEventListener("error", function () { fig.style.display = "none"; });
+    m.addEventListener("error", function () {
+      var fb = m.getAttribute("data-fallback");
+      if (m.tagName === "VIDEO" && fb) {
+        var img = document.createElement("img");
+        img.src = fb;
+        img.alt = m.getAttribute("aria-label") || "";
+        img.addEventListener("error", function () { hideMediaFigure(fig); });
+        m.replaceWith(img);
+        /* フォールバック静止画は実写スクショなので図解バッジは外す */
+        var frame = fig.querySelector(".frame[data-diagram]");
+        if (frame) frame.removeAttribute("data-diagram");
+        return;
+      }
+      hideMediaFigure(fig);
+    });
     if (m.tagName === "VIDEO" && reduceMotionMedia) {
       /* 動きを抑える設定の閲覧者には自動再生せず、手動再生に切り替える */
       m.removeAttribute("autoplay");
