@@ -20,7 +20,7 @@ var APP_STORE_URL = "https://apps.apple.com/app/id6789836061";
    空文字のままなら何も送信しない no-op。設定する場合は intent=store-click を
    受けられる別エンドポイント（Formspreeの別フォーム等）を用意すること。
    ============================================================ */
-var STORE_BEACON_ENDPOINT = "";
+var STORE_BEACON_ENDPOINT = "https://nft66gogfr5azd2tshdlf4ucfa0ksqyi.lambda-url.us-east-1.on.aws/";
 
 (function () {
   "use strict";
