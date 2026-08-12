@@ -151,8 +151,11 @@ h1 .accent { color: var(--pink); }
   border: 1px solid var(--line);
 }
 
-/* Mac App Store CTA（自前デザイン。公式バッジではない。data-store 属性でJSがhrefを注入し、
-   将来 <span class="storecta-label"> の中身だけ公式バッジ<img>に差し替えれば移行できる） */
+/* Mac App Store CTA。ヒーローのみ公式バッジ（.storecta.badge）——Appleガイドラインの
+   「Use one App Store badge per layout」に従い1ページ1バッジ。バッジは改変・装飾・アニメーション
+   禁止のため背景色やhover効果を付けず、高さ54px（規約最小40px以上）・周囲クリアスペース
+   （高さの1/4=13.5px以上）を確保する。最下部・nav・フッタは自前デザインのまま（規約対象外）。
+   data-store 属性でJSがhrefを注入するのは全CTA共通 */
 .cta-block { margin-top: 28px; }
 .storecta {
   display: inline-flex; align-items: center;
@@ -164,6 +167,7 @@ h1 .accent { color: var(--pink); }
   font-size: 1.02rem; letter-spacing: -0.01em;
 }
 .storecta.primary:hover { filter: brightness(1.07); }
+.storecta.badge img { display: block; height: 54px; width: auto; }
 .storecta.disabled { pointer-events: none; opacity: 0.45; cursor: not-allowed; }
 .ctanote { margin-top: 14px; font-size: 0.82rem; color: var(--muted); }
 
