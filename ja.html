@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FletchShot — 撮る・描く・渡すを3秒で</title>
-<meta name="description" content="撮る・描く・渡すを3秒で。スクリーンショット注釈に、画面録画・GIF・OCR・キャプチャ履歴まで載せて、設定は最小限。Skitchの操作感を受け継ぐApple Siliconネイティブ、14日間無料・以降は¥1,500の買い切り、通信ゼロのmacOSアプリ。">
+<meta name="description" content="撮る・描く・渡すを3秒で。スクリーンショット注釈に、画面録画（矢印もジャンプカットも）・GIF・OCR・キャプチャ履歴まで載せて、設定は最小限。Skitchの操作感を受け継ぐApple Siliconネイティブ、14日間無料・以降は¥1,500の買い切り、通信ゼロのmacOSアプリ。">
 <meta property="og:title" content="FletchShot — 撮る・描く・渡すを3秒で">
-<meta property="og:description" content="機能は豊かに、手触りは軽く。録画・GIF・OCRまで載せて設定は最小限。14日間無料・以降は¥1,500の買い切り、通信ゼロ。Mac App Storeで配信中。">
+<meta property="og:description" content="機能は豊かに、手触りは軽く。録画にも矢印を、GIFもOCRも載せて設定は最小限。14日間無料・以降は¥1,500の買い切り、通信ゼロ。Mac App Storeで配信中。">
 <meta property="og:type" content="website">
 <link rel="alternate" hreflang="en" href="index.html">
 <link rel="stylesheet" href="style.css">
@@ -212,8 +212,34 @@
 
   <section>
     <div class="wrap-wide">
-      <p class="kicker">撮る</p>
+      <p class="kicker">動画に描く</p>
       <div class="feature">
+        <div class="ftext">
+          <h2 class="head">録画にも、同じ矢印を</h2>
+          <p>静止画で使っている矢印・図形・ペン・スタンプ・番号・テキストが、そのまま録画にも。動画の上に直接描き込めて、<strong>書き出しでファイルに焼き込まれます</strong>。</p>
+          <p><strong>「切り出し」は、これまで前後を刈るだけでした。今は途中も刈れます</strong>——要らない区間を選んで「除去」。言い淀んだ間、開いてしまった別ウィンドウ、やり直したひと操作。撮り直さずに、その一箇所だけ抜けます。</p>
+          <p>注釈にはそれぞれ<strong>表示時間帯</strong>があるので、矢印を「見せたい瞬間だけ」出せます。モザイクは、録画に映り込んだ<strong>氏名・メールアドレス・通知</strong>を隠したまま渡すため——ファイルがMacの外に出る前に。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="動きの図解">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/video-markup.mp4" poster="media/video-markup-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="動画注釈のアニメーション図解。録画にピンクの矢印が描き込まれ、途中の区間が選ばれて除去され、短くなった動画が残る"></video>
+            </div>
+            <figcaption>描いて、中を抜いて、渡す——3秒の手触りはそのまま</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">撮る</p>
+      <div class="feature flip">
         <div class="ftext">
           <h2 class="head">撮った画像を画面に貼っておく</h2>
           <p>ピン留めで、撮った画像を<strong>最前面に浮かせたまま</strong>作業できます。デザインの差分確認や、手順を横目に見ながらの操作に。</p>
@@ -237,7 +263,7 @@
   <section>
     <div class="wrap-wide">
       <p class="kicker">渡す</p>
-      <div class="feature flip">
+      <div class="feature">
         <div class="ftext">
           <h2 class="head">文字は文字のまま渡す</h2>
           <p>OCRで画面の中のテキストを抽出します。エラーメッセージも表の中身も、画像ではなく<strong>貼り付けられる文字</strong>で渡せます。</p>
@@ -263,7 +289,7 @@
   <section>
     <div class="wrap-wide">
       <p class="kicker">渡す</p>
-      <div class="feature">
+      <div class="feature flip">
         <div class="ftext">
           <h2 class="head">さっきのをもう一回</h2>
           <p>キャプチャ履歴は50件。「あの画像、もう一度ください」に<strong>3秒で応えられます</strong>。</p>
@@ -304,7 +330,7 @@
         </div>
         <div class="item">
           <h3>モザイク</h3>
-          <p>見せたくない場所をひと塗りで隠せます。共有前の身だしなみに。</p>
+          <p>見せたくない場所をひと塗りで隠せます。静止画でも、録画でも。</p>
         </div>
         <div class="item">
           <h3>蛍光ペン・図形・テキスト</h3>
