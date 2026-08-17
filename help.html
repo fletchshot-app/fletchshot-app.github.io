@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FletchShot Help — How to use, permissions, FAQ</title>
-<meta name="description" content="How to use FletchShot: capture, annotate, hand off, screen recording, first-run permissions, keyboard shortcuts, and frequently asked questions.">
+<meta name="description" content="How to use FletchShot: capture, annotate, hand off, screen recording, video annotation and trimming, first-run permissions, keyboard shortcuts, and frequently asked questions.">
 <link rel="alternate" hreflang="ja" href="help-ja.html">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -75,7 +75,7 @@
       <li><strong>Stamps</strong> — ✓ ✕ ? ! ♥.</li>
       <li><strong>Numbers</strong> — a counter stamp that increments on every click.</li>
       <li><strong>Mosaic</strong> — blur out what shouldn't be seen.</li>
-      <li><strong>Crop</strong> — trim the capture.</li>
+      <li><strong>Crop</strong> — trim the capture (stills only).</li>
     </ul>
     <p>Color and size are remembered per tool — set them once and they stay.</p>
   </div>
@@ -100,6 +100,28 @@
     <h2 class="head">Screen recording and GIF</h2>
     <p>Choose <strong>Record screen</strong> from the menu bar. A control bar appears: drag to pick an area and press ●, or start immediately. Stop with <kbd>⌥⌘4</kbd> — the same key you shoot with.</p>
     <p>After recording, switch between <strong>MP4 and GIF</strong> in the footer of the window. The mic is a single 🎤 toggle on the control bar; quality and mic volume live in Settings.</p>
+    <p>The clip opens in the annotation window, ready for arrows and cuts — see <a href="#video">Drawing on and trimming video</a>.</p>
+  </div>
+</section>
+
+<section id="video">
+  <div class="wrap prose">
+    <p class="kicker">Video</p>
+    <h2 class="head">Drawing on and trimming video</h2>
+    <p><strong>Pause the video and the toolbar appears</strong> — draw with the same tools you use on stills (Crop is the one that stays stills-only). While paused you can also drag any annotation to move it, or grab its handles to reshape it. On export, everything is baked into the file.</p>
+    <h3>When an annotation appears</h3>
+    <p>An annotation shows from the moment you placed it until the end of the clip. To change that, select it: a <strong>pink range bar</strong> appears above the footer. Drag its ends to set when the annotation appears and disappears; scrub with the playhead below the bar to check the exact frames.</p>
+    <h3>Trimming — the ends and the middle</h3>
+    <p>Press the <strong>scissors</strong> in the footer to open the trim bar:</p>
+    <ul>
+      <li><strong>Trim the ends</strong> — drag the handles at either edge.</li>
+      <li><strong>Cut the middle</strong> — drag across the bar to select a stretch, then hit the <strong>Cut</strong> chip (or Delete). The stretch turns dark red. Add as many as you like, and fine-tune each one by dragging its edges.</li>
+      <li><strong>Confirm with ✓ or Enter</strong>; Esc cancels. Confirming a trim clears the annotations on the clip — you're warned first, and the <strong>undo button brings back both</strong> the footage and the annotations, one step at a time.</li>
+    </ul>
+    <h3>Mosaic on video</h3>
+    <p>Drag a rectangle over a name, an address, a notification — it is pixelated live, in the preview and in the exported file. Its time range is adjustable like any annotation, and arrows drawn on top of it stay sharp.</p>
+    <h3>Handing off a video</h3>
+    <p>With annotations on the clip, the first click on the drag tab starts the bake — the footer shows progress — and when it finishes, drag as usual. Save, copy, and share wait for the bake on their own. In GIF mode the conversion follows the bake; every route hands over the GIF once it's ready.</p>
   </div>
 </section>
 
@@ -132,6 +154,7 @@
     <ul>
       <li><strong>Re-shoot the same spot:</strong> Repeat last area → one arrow → drag tab into Slack. The second shot is where the speed shows.</li>
       <li><strong>Explain motion with a GIF:</strong> Record screen → <kbd>⌥⌘4</kbd> to stop → switch to GIF in the footer → drag tab into the chat.</li>
+      <li><strong>Cut a flub out of a recording:</strong> scissors → drag across the bad stretch → Cut → <kbd>Enter</kbd>. No re-recording.</li>
       <li><strong>Text from a screenshot:</strong> Capture a window → Recognize text → paste.</li>
     </ul>
   </div>
@@ -149,6 +172,14 @@
       <details>
         <summary>My voice isn't in the recording.</summary>
         <p>Two switches: the 🎤 toggle on the recording bar must be on, and FletchShot must be allowed under System Settings › Privacy &amp; Security › Microphone.</p>
+      </details>
+      <details>
+        <summary>The toolbar is gone while a video plays.</summary>
+        <p>By design — tools show while the video is <strong>paused</strong>. Press Space or the pause button, then draw.</p>
+      </details>
+      <details>
+        <summary>I switched to GIF and dragging hands over nothing.</summary>
+        <p>The clip is still being baked and converted — the footer shows the progress. Once it finishes, the drag tab hands over the finished GIF. Save and copy simply wait for it on their own.</p>
       </details>
       <details>
         <summary>The GIF file is too big.</summary>
