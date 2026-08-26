@@ -58,7 +58,26 @@
       <li><strong>Full screen</strong> / <strong>Window</strong> — one click each.</li>
       <li><strong>Self-timer</strong> — capture after a short delay, for menus and hover states.</li>
       <li><strong>Open image…</strong> — annotate an existing image file.</li>
+      <li><strong>Scrolling Capture</strong> — turn a long page into one tall image by scrolling it yourself. See <a href="#scroll">Scrolling Capture</a>.</li>
     </ul>
+  </div>
+</section>
+
+<section id="scroll">
+  <div class="wrap prose">
+    <p class="kicker">One tall image</p>
+    <h2 class="head">Scrolling Capture</h2>
+    <p>Choose <strong>Capture Scrolling</strong> from the menu bar and mark the area. Then <strong>scroll the window yourself, by hand</strong>. FletchShot takes a low-rate burst as you move, matches the rows against each other, and stitches everything into one tall image. Press <kbd>Return</kbd> to finish, <kbd>Esc</kbd> to abandon; the finished image opens straight in the annotation window.</p>
+    <p>A small circle floats in the lower part of the frame while you scroll. <strong>A spinning white arc means it's following you.</strong> <strong>If the circle turns red and says "Scroll back a little," go back to what you'd already captured — roughly half a screen of overlap — and then move down slowly again</strong> — the moment the overlap is picked up, the circle goes white and the stitch continues. If a small step back doesn't clear the red, go back further; there's no penalty for overshooting. Jumping to the top of the page with <kbd>⌘↑</kbd> works reliably too. If you push past into territory it never saw, that part simply isn't captured.</p>
+    <p>The one trick: <strong>stroke slowly, and always keep a little overlap</strong>. A hard flick throws the overlap away and turns the circle red. No extra permission is needed — Scrolling Capture uses only the Screen Recording permission and never sends synthetic keys or scroll events. You can bind a hotkey in <strong>Settings › Capture &amp; Recording</strong> (unassigned by default; pressing the same key again while recording confirms).</p>
+    <h3>What it's good at, and what it isn't</h3>
+    <table class="helptable">
+      <tr><th>Fit</th><th>Page</th><th>What happens</th></tr>
+      <tr><td>◎</td><td>Chat logs (Slack, Discord and friends), pricing and comparison tables, terminals and editors, ordinary long articles</td><td>Stroke at a normal pace and it stitches all the way through. We've measured single stitches past 80,000 pixels.</td></tr>
+      <tr><td>△</td><td>Image-heavy pages, pages with lazy-loaded content, or a moment when you flicked too hard</td><td>The circle may go red for a few seconds while images finish loading — it recovers on its own, and scrolling back a little always brings it back.</td></tr>
+      <tr><td>×</td><td>Pages that are mostly code blocks with many visually identical lines, and infinite-scroll feeds like X where the content itself keeps swapping in</td><td>There isn't enough to match on, or the page changes under your fingers. The red circle appears often enough that some stretches won't be captured. And on pages of long, repetitive lists — reference sections and the like — a fast wheel flick can occasionally produce a stitch that looks seamless but has skipped a stretch in the middle. Take the page in a couple of separate shots instead, and give the finished image a quick look before you use it.</td></tr>
+    </table>
+    <p>If a stitch doesn't come out, hit <kbd>Esc</kbd> and try again a little slower. The finished image stays on this Mac, like every other capture.</p>
   </div>
 </section>
 
