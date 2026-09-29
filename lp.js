@@ -173,8 +173,9 @@ var STORE_BEACON_ENDPOINT = "https://nft66gogfr5azd2tshdlf4ucfa0ksqyi.lambda-url
     if (len < 40) return;
 
     /* 描画進行 t (0..1): 終点を曲線上で手前に */
-    var cx = (x0 + x1) / 2 + -dy * 0.18; /* 垂直方向にふくらませる制御点 */
-    var cy = (y0 + y1) / 2 + dx * 0.18;
+    /* 実アプリの矢印は直線のみ（始点・終点の2点）のため直線に揃えた（2026-09-29） */
+    var cx = (x0 + x1) / 2;
+    var cy = (y0 + y1) / 2;
     function q(s) {
       var u = 1 - s;
       return {
