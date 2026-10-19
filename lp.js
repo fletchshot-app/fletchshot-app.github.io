@@ -28,7 +28,22 @@ var STORE_BEACON_ENDPOINT = "https://nft66gogfr5azd2tshdlf4ucfa0ksqyi.lambda-url
   /* --- 流入元計測: ?src=hn|x|hatena をhiddenフィールドへ --- */
   var src = new URLSearchParams(location.search).get("src") || "direct";
 
-  /* --- Mac App Store CTA: URL注入・プレースホルダ安全弁・outbound計測 --- */
+  /* --- 流入元の引き継ぎ: ?src 付きで来た訪問者がサイト内リンク（EN/JA切替・ヘルプ・
+     プライバシー・ワードマーク）を踏んでも src が落ちないよう、同一サイトの .html への
+     相対リンクに ?src= を付け直す。直接訪問（direct）はURLを汚さない。
+     （2026-10-08: 言語切替で流入元が失われる指摘への対処） --- */
+  if (src !== "direct") {
+    document.querySelectorAll('a[href$=".html"]').forEach(function (a) {
+      var href = a.getAttribute("href");
+      if (!href || href.indexOf("://") >= 0 || href.indexOf("?") >= 0) return;
+      a.setAttribute("href", href + "?src=" + encodeURIComponent(src));
+    });
+  }
+
+  /* --- Mac App Store CTA: URL注入・プレースホルダ安全弁・outbound計測 ---
+     HTML側の [data-store] href には実URLを直書きしてある（JS無効でもストアへ飛ぶ・
+     2026-10-08）。ここでは ?src= を付け足すだけ。APP_STORE_URL とHTMLの href は
+     同じURLに保つこと。 */
   var storePlaceholder = /idXXXXXXXXXX/.test(APP_STORE_URL);
   document.querySelectorAll("[data-store]").forEach(function (a) {
     if (storePlaceholder) {
