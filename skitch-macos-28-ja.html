@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skitch は macOS 28 で動かなくなる——確かめ方と移り先 | FletchShot</title>
+<meta name="description" content="Skitch（Mac 版 2.9）は Intel 用のアプリで、Rosetta が使えなくなる macOS 28 では起動できなくなります。いつ・なぜ動かなくなるのか、自分の Skitch の確かめ方、移り先の選び方をまとめました。">
+<meta property="og:title" content="Skitch は macOS 28 で動かなくなる——確かめ方と移り先">
+<meta property="og:description" content="いつ・なぜ動かなくなるのか、自分の Skitch の確かめ方、移り先の選び方。">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://fletchshot.app/skitch-macos-28-ja.html">
+<link rel="alternate" hreflang="en" href="https://fletchshot.app/skitch-macos-28.html">
+<link rel="alternate" hreflang="ja" href="https://fletchshot.app/skitch-macos-28-ja.html">
+<link rel="alternate" hreflang="x-default" href="https://fletchshot.app/skitch-macos-28.html">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <a class="wordmark" href="ja.html">
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 16 L13 5 L11 3 L16 2 L15 7 L13 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    FletchShot
+  </a>
+  <nav class="nav" aria-label="サイト内">
+    <a class="navlink" href="ja.html">ホーム</a>
+    <a class="navlink" href="help-ja.html">ヘルプ</a>
+    <a class="navcta storecta" data-store href="https://apps.apple.com/app/id6789836061">App Storeで入手</a>
+    <span class="lang" aria-label="言語"><a href="skitch-macos-28.html">EN</a> · <strong>日本語</strong></span>
+  </nav>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <p class="kicker">解説（2026年10月時点）</p>
+    <h1 class="head">Skitch は macOS 28 で動かなくなる</h1>
+    <p>Mac で Skitch を開いたとき、「Intel ベースのアプリのサポートが終了する」という通知が出ていませんか。それは、今のうちに移り先を考えておいてほしいという macOS からの合図です。</p>
+    <p>このページでは、<strong>いつ・なぜ動かなくなるのか</strong>、<strong>自分の Skitch の確かめ方</strong>、<strong>移り先の選び方</strong>をまとめます。FletchShot の作者が書いていますが、ほかの選択肢も正直に並べます。</p>
+  </div>
+</section>
+
+<section id="when">
+  <div class="wrap prose">
+    <h2 class="head">いつ、なぜ動かなくなるのか</h2>
+    <p>Apple シリコン（M1 以降）の Mac では、Intel 用に作られたアプリは <strong>Rosetta</strong> という仕組みで翻訳しながら動いています。Apple はこの Rosetta を段階的に終えると発表しています。</p>
+    <ul>
+      <li><strong>macOS 27 まで</strong>: Rosetta が使えるので、Intel 用のアプリも今までどおり動きます。</li>
+      <li><strong>macOS 28 から</strong>（次の大きな版、例年どおりなら 2027 年の秋）: Rosetta は、Intel 向けの仕組みに頼る一部の古いゲームのためだけに残ります。ふつうのアプリは起動できなくなります。</li>
+    </ul>
+    <p>Mac App Store の Skitch は、版 2.9（2020 年 7 月の更新）が最後です。この版は Intel 用で、Apple シリコン向けの版は出ていません。そのため、このままでは macOS 28 で使えなくなります。</p>
+    <p class="note">出典: Apple サポート「<a href="https://support.apple.com/ja-jp/102527" rel="noopener">Apple シリコン搭載 Mac で Intel ベースのアプリを使う</a>」、Apple Developer News「<a href="https://developer.apple.com/news/?id=w5ngl9k2" rel="noopener">Upcoming changes to Rosetta support for Intel-based macOS apps</a>」</p>
+  </div>
+</section>
+
+<section id="check">
+  <div class="wrap prose">
+    <h2 class="head">自分の Skitch を確かめる</h2>
+    <h3>方法1: 「情報を見る」</h3>
+    <p>Finder で「アプリケーション」フォルダーの Skitch を選び、<kbd>⌘I</kbd>（ファイル › 情報を見る）を押します。「種類」が <strong>「アプリケーション（Intel）」</strong> なら、macOS 28 では動きません。「Universal」や「Apple シリコン」なら影響はありません。</p>
+    <h3>方法2: Intel ベースのアプリの一覧（macOS 27 以降）</h3>
+    <p><strong>システム設定 › 一般 › 情報</strong> の「Intel ベースのアプリ」の横にある「詳細」を押すと、最近使った Intel 用のアプリが一覧で出ます。Skitch 以外に困るアプリがないかも、ここでまとめて確かめられます。</p>
+  </div>
+</section>
+
+<section id="choose">
+  <div class="wrap prose">
+    <h2 class="head">移り先の選び方</h2>
+    <p>Skitch の良さは、撮ったらすぐ描ける、太さの変わる矢印、ドラッグで渡せる、そして機能が少ないこと、の4つでした。どれを大事にするかで、向いている移り先が変わります。</p>
+
+    <h3>macOS に入っている機能（無料）</h3>
+    <p><kbd>⇧⌘4</kbd> で撮り、画面の隅に出るサムネールを押すと、マークアップで矢印や文字を描けます。追加のアプリは要りません。ただ、矢印の描き味や「撮ってすぐ描く」流れは Skitch とかなり違います。たまにしか使わないならこれで十分です。</p>
+
+    <h3>Shottr（無料で使える・好きな額を払える）</h3>
+    <p>Apple シリコン向けに作られた、軽くて速いスクリーンショットアプリです。無料のまま使い続けられます。拡大鏡・定規・OCR など、測る・調べる機能が充実しています。画面の操作は Skitch とは違う考え方です。</p>
+
+    <h3>CleanShot X（35 ドル買い切り＋更新は年 19 ドル、またはサブスクリプション）</h3>
+    <p>録画・クラウド共有・チーム機能まで揃った、いちばん多機能な選択肢です。買い切りのプランは、最初の1年だけ更新が付きます。機能も設定も多いので、「Skitch の軽さ」を求める人には多すぎるかもしれません。</p>
+
+    <h3>FletchShot（14 日間無料、その後 1,500 円の買い切り）</h3>
+    <p>このページの作者が作っているアプリです。Skitch 2.9 の矢印の形・撮ってから描けるまでの速さ・下端のドラッグタブを、実物を測って作り直しました。録画・GIF・OCR・スクロールキャプチャも載せていますが、設定は最小限です。Apple シリコン向けで、サブスクリプションはありません。</p>
+    <p class="note">価格は 2026 年 10 月時点の各公式サイト・App Store の表示です。</p>
+  </div>
+</section>
+
+<section id="when-to-move">
+  <div class="wrap prose">
+    <h2 class="head">いつ移ればいいか</h2>
+    <p>macOS 27 を使っている間は、Skitch もそのまま動きます。急ぐ必要はありません。ただ、macOS 28 に上げた日に慌てないように、今のうちに移り先を一度試しておくのがおすすめです。試してみて Skitch のほうが良ければ、macOS 27 のまま使い続けるという選び方もあります。</p>
+    <p><a class="storecta" data-store href="https://apps.apple.com/app/id6789836061">FletchShot を 14 日間無料で試す</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>製品</h4>
+        <a href="ja.html">ホーム</a>
+        <a href="ja.html#features">機能</a>
+        <a href="ja.html#pricing">価格</a>
+        <a href="help-ja.html">ヘルプ</a>
+        <a href="privacy-ja.html">プライバシー</a>
+      </div>
+      <div>
+        <h4>入手</h4>
+        <a data-store href="https://apps.apple.com/app/id6789836061">Mac App Store</a>
+      </div>
+      <div>
+        <h4>言語</h4>
+        <a href="skitch-macos-28.html">English</a>
+        <a href="skitch-macos-28-ja.html">日本語</a>
+      </div>
+    </div>
+    <p><strong>FletchShot</strong> — make your point fly straight. <span class="mono">fletch (v.): to fit an arrow with feathers so it flies true.</span></p>
+    <p>FletchShotは独立したプロダクトであり、Evernote、Bending Spoons、およびSkitchの開発元とは無関係です。「Skitch」への言及は操作感の互換性を説明する目的に限られます。各商標はそれぞれの権利者に帰属します。</p>
+    <p>このページでは Cookie を使いません。数えるのは Mac App Store へのリンクのクリック数だけです。</p>
+  </div>
+</footer>
+
+<script src="lp.js"></script>
+</body>
+</html>

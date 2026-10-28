@@ -67,6 +67,23 @@ var STORE_BEACON_ENDPOINT = "https://nft66gogfr5azd2tshdlf4ucfa0ksqyi.lambda-url
   });
 
   /* --- メール登録フォーム（FAQ内「アップデートだけ知りたい」の1つのみ） --- */
+  // 登録フォームの結果メッセージ（<html lang> の先頭2文字で選ぶ。無い言語は英語）
+  var FORM_MSG = {
+    ok: {
+      en: "You're in. Next email is the next major release.",
+      ja: "登録しました。次のメジャーアップデートまで、他には何もお送りしません。",
+      de: "Du bist eingetragen. Die nächste E-Mail kommt erst zum nächsten großen Update.",
+      es: "¡Listo! El próximo correo será con la próxima gran actualización.",
+      zh: "登記完成。下次大型更新前，不會再寄任何信給你。",
+    },
+    fail: {
+      en: "Something failed. Please try again in a moment.",
+      ja: "送信に失敗しました。時間をおいて、もう一度お試しください。",
+      de: "Das hat nicht geklappt. Bitte versuch es gleich noch einmal.",
+      es: "Algo falló. Vuelve a intentarlo en un momento.",
+      zh: "送出失敗，請稍後再試一次。",
+    },
+  };
   document.querySelectorAll("form.signup").forEach(function (form) {
     var hidden = form.querySelector('input[name="source"]');
     if (hidden) hidden.value = src;
@@ -74,7 +91,7 @@ var STORE_BEACON_ENDPOINT = "https://nft66gogfr5azd2tshdlf4ucfa0ksqyi.lambda-url
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var msg = form.parentElement.querySelector(".formmsg");
-      var lang = document.documentElement.lang;
+      var lang = document.documentElement.lang.slice(0, 2);
       if (!FORM_ENDPOINT) {
         msg.className = "formmsg err";
         msg.textContent = lang === "ja"
@@ -92,16 +109,12 @@ var STORE_BEACON_ENDPOINT = "https://nft66gogfr5azd2tshdlf4ucfa0ksqyi.lambda-url
         .then(function (r) {
           if (!r.ok) throw new Error("bad status");
           msg.className = "formmsg ok";
-          msg.textContent = lang === "ja"
-            ? "登録しました。次のメジャーアップデートまで、他には何もお送りしません。"
-            : "You're in. Next email is the next major release.";
+          msg.textContent = FORM_MSG.ok[lang] || FORM_MSG.ok.en;
           form.reset();
         })
         .catch(function () {
           msg.className = "formmsg err";
-          msg.textContent = lang === "ja"
-            ? "送信に失敗しました。時間をおいて、もう一度お試しください。"
-            : "Something failed. Please try again in a moment.";
+          msg.textContent = FORM_MSG.fail[lang] || FORM_MSG.fail.en;
         })
         .finally(function () {
           btn.disabled = false;

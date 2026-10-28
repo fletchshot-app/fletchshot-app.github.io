@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FletchShot: captura, anota y comparte en tres segundos</title>
+<meta name="description" content="Captura la pantalla de tu Mac, añade una flecha y compártela. FletchShot también graba la pantalla, exporta GIF y extrae texto con OCR. Pruébala gratis durante 14 días; después, un solo pago, sin suscripción.">
+<meta property="og:title" content="FletchShot: captura, anota y comparte en tres segundos">
+<meta property="og:description" content="Haz una captura, señala lo importante con una flecha y compártela desde tu Mac. Incluye grabación de pantalla, GIF y OCR. Gratis 14 días y después un solo pago, sin suscripción. Ya en el Mac App Store.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://fletchshot.app/es.html">
+<link rel="alternate" hreflang="en" href="https://fletchshot.app/">
+<link rel="alternate" hreflang="ja" href="https://fletchshot.app/ja.html">
+<link rel="alternate" hreflang="de" href="https://fletchshot.app/de.html">
+<link rel="alternate" hreflang="es" href="https://fletchshot.app/es.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://fletchshot.app/zh-tw.html">
+<link rel="alternate" hreflang="x-default" href="https://fletchshot.app/">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <a class="wordmark" href="#">
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 16 L13 5 L11 3 L16 2 L15 7 L13 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    FletchShot
+  </a>
+  <nav class="nav" aria-label="Sitio">
+    <a class="navlink" href="#features">Funciones</a>
+    <a class="navlink" href="#pricing">Precio</a>
+    <a class="navlink" href="#faq">Preguntas</a>
+    <a class="navcta storecta" data-store href="https://apps.apple.com/app/id6789836061">Descárgala en el App Store</a>
+    <span class="lang" aria-label="Idioma"><a href="index.html">EN</a> · <a href="ja.html">日本語</a> · <a href="de.html">DE</a> · <strong>ES</strong> · <a href="zh-tw.html">繁中</a></span>
+  </nav>
+</header>
+
+<!-- 更新バナーの置き場所。点灯する版のときだけ div.updatebanner を置く（CSSは style.css に常設）。
+     直近の点灯: v2.1 継ぎ撮り（2026-08-27 点灯 → 2026-09-10 撤去。三井裁定=公開から2週間で消す） -->
+
+<main>
+  <div class="hero">
+    <canvas id="arrowCanvas" aria-hidden="true"></canvas>
+    <div class="wrap-wide hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Para anotar capturas de pantalla en macOS</p>
+        <h1>Captura, anota y comparte.<br><span class="accent">En tres segundos.</span></h1>
+        <p class="sub" id="arrowFrom">En cuanto haces la captura, se abre la ventana de anotación con <strong>la flecha ya seleccionada</strong>. Cuando termines, <strong>arrastra la pestaña del borde inferior directamente a Slack, al Finder o a la Terminal</strong>. También puedes grabar la pantalla, exportar GIF y extraer el texto de tus capturas. Pruébala <strong>gratis durante 14 días</strong>; después, con un pago único sigues guardando, copiando y compartiendo lo que captures.</p>
+
+        <div class="capture-decor" aria-hidden="true">
+          <span class="handle" style="top:-4px;left:-4px"></span>
+          <span class="handle" style="top:-4px;left:calc(50% - 3.5px)"></span>
+          <span class="handle" style="top:-4px;right:-4px"></span>
+          <span class="handle" style="top:calc(50% - 3.5px);left:-4px"></span>
+          <span class="handle" style="top:calc(50% - 3.5px);right:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:calc(50% - 3.5px)"></span>
+          <span class="handle" style="bottom:-4px;right:-4px"></span>
+          <span class="readout mono" aria-hidden="true">480 × 200</span>
+        </div>
+
+        <div class="cta-block" id="get">
+          <a class="storecta badge" data-store href="https://apps.apple.com/app/id6789836061" aria-label="Descarga FletchShot en el Mac App Store">
+            <img src="badges/mac-app-store-badge-es.svg" alt="Descargar en el Mac App Store" width="211" height="54">
+          </a>
+          <p class="ctanote">macOS 14 o posterior · Gratis 14 días, después un pago único · No necesitas cuenta y la app no se conecta a la red.</p>
+        </div>
+      </div>
+      <div class="hero-shot">
+        <figure class="media" data-media>
+          <div class="frame">
+            <span class="handle" style="top:-4px;left:-4px"></span>
+            <span class="handle" style="top:-4px;right:-4px"></span>
+            <span class="handle" style="bottom:-4px;left:-4px"></span>
+            <span class="handle" style="bottom:-4px;right:-4px"></span>
+            <video src="media/hero-loop.mp4" poster="media/hero-window.png" data-fallback="media/hero-window.png" autoplay muted loop playsinline preload="metadata" aria-label="Demo en bucle de FletchShot: captura, flecha rosa afilada y pestaña de arrastre en el borde inferior"></video>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <section id="demo">
+    <div class="wrap-wide">
+      <p class="kicker">Sin trucos</p>
+      <h2 class="head">Tres segundos, a velocidad real.</h2>
+      <figure class="media" data-media>
+        <div class="frame">
+          <span class="handle" style="top:-4px;left:-4px"></span>
+          <span class="handle" style="top:-4px;right:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:-4px"></span>
+          <span class="handle" style="bottom:-4px;right:-4px"></span>
+          <video src="media/demo-full.mp4" poster="media/demo-full-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="Demo de la app a velocidad real: atajo de teclado, captura, flecha y pestaña de arrastre hasta Slack"></video>
+        </div>
+        <figcaption>Grabado desde la app, sin acelerar: atajo → selección → flecha → pestaña de arrastre a Slack</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">Tres promesas</p>
+      <h2 class="head">Todo lo que necesitas para capturar y anotar.</h2>
+      <div class="four">
+        <div class="item">
+          <h3><span class="n mono">1</span>Rápida.</h3>
+          <p>Usas el atajo y la captura se abre directamente en el editor, lista para añadir una flecha. Cada paso tiene un tiempo máximo en milisegundos, y no publicamos ninguna versión que lo supere.</p>
+        </div>
+        <div class="item">
+          <h3><span class="n mono">2</span>Completa, pero sencilla.</h3>
+          <p>Incluye grabación de pantalla, GIF, OCR e historial de capturas. Cada función tiene pocos ajustes y vienen bien elegidos de serie, así que puedes empezar sin complicaciones.</p>
+        </div>
+        <div class="item">
+          <h3><span class="n mono">3</span>Privada.</h3>
+          <p>La app no hace ninguna conexión de red: no envía tus capturas ni tus grabaciones a ningún servidor. Tú decides qué compartes y con quién. No necesitas cuenta. Gratis 14 días y después un pago único, sin suscripción.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap-wide">
+      <p class="kicker">Anota</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">La flecha está lista desde el primer momento.</h2>
+          <p>El editor se abre en cuanto haces la captura, con <strong>la flecha ya seleccionada</strong>. No aparece ningún cuadro de diálogo para guardar ni tienes que elegir un modo.</p>
+          <p>La flecha empieza fina donde comienzas a arrastrar y se va ensanchando hacia lo que quieres señalar. Es <strong>una sola forma rellena</strong>, no una línea con una punta pegada. Y es rosa, claro.</p>
+          <p>Hay nueve colores y un selector para cualquier otro. Los ocho últimos que elijas quedan a un clic.</p>
+          <p>Cada anotación sigue siendo editable: puedes seleccionarla otra vez, moverla o borrarla cuando quieras, y puedes deshacer prácticamente todos los cambios.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <img src="media/annotate.png" alt="La ventana de anotación de FletchShot: una flecha rosa afilada, rectángulos, texto y sellos numerados sobre un panel capturado" loading="lazy">
+            </div>
+            <figcaption>La ventana de anotación: la flecha es una sola forma rellena y la pestaña de arrastre está abajo</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Comparte</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">Arrastra la pestaña hasta Slack.</h2>
+          <p>Cuando termines de dibujar, arrastra la pestaña del borde inferior a <strong>Slack, Mail, el Finder o la Terminal</strong>. Llega como un archivo de imagen normal.</p>
+          <p>No hace falta exportar ni guardar el archivo antes de adjuntarlo, y no aparece ningún cuadro de diálogo.</p>
+          <p>¿Prefieres el portapapeles? Con ⌘⇧C copias la imagen y cierras la ventana a la vez.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="Cómo funciona">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/handoff.mp4" poster="media/handoff-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="Diagrama animado: se arrastra la pestaña del borde inferior para pasar una imagen anotada a una app de chat"></video>
+            </div>
+            <figcaption>Arrastra y suelta, sin cuadros de diálogo</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Captura</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">La misma área, otra vez.</h2>
+          <p><strong>Recuerda tu última selección y la vuelve a capturar en un solo paso.</strong> Cuando te toca capturar la misma pantalla una y otra vez (para documentación o informes de errores), es lo que más tiempo te ahorra.</p>
+          <p>Para capturar una ventana también basta una tecla, sin ajustar los bordes a mano.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="Cómo funciona">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/capture.mp4" poster="media/capture-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="Diagrama animado de repetir la captura de la misma área: tras una selección, un atajo vuelve a capturar el mismo rectángulo"></video>
+            </div>
+            <figcaption>Vuelve a capturar exactamente la misma área, sin volver a seleccionar</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Graba</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">Si algo se mueve, grábalo.</h2>
+          <p>Graba <strong>la pantalla completa, un área o una ventana</strong>. El resaltado de clics se activa o desactiva con un botón.</p>
+          <p>Al exportar, eliges <strong>MP4 o GIF</strong> con un interruptor en la barra inferior. La calidad está en un solo menú (<strong>Alta, Media o Baja</strong>): deja «Media» y olvídate, o cambia a «Baja» si necesitas un archivo ligero para Slack.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="Cómo funciona">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/recording.mp4" poster="media/recording-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="Diagrama animado de la grabación de pantalla: clics resaltados durante la grabación y un interruptor que cambia la exportación entre MP4 y GIF"></video>
+            </div>
+            <figcaption>Graba y elige MP4 o GIF con un interruptor</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Anota grabaciones</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">Dibuja también sobre la grabación.</h2>
+          <p>Las mismas flechas, formas, lápiz, sellos, números y texto que usas en las capturas ahora también funcionan en tus grabaciones. Al exportar, <strong>todo queda integrado en el archivo</strong>.</p>
+          <p><strong>Ahora puedes eliminar un tramo de cualquier parte de la grabación</strong>, no solo el principio o el final. Selecciona lo que sobra y córtalo. Esa pausa incómoda o el paso que tuviste que repetir desaparecen sin volver a grabar.</p>
+          <p>Cada anotación tiene su propio <strong>momento de inicio y de fin</strong>, así que una flecha puede aparecer solo cuando hace falta. Y con Pixelar puedes tapar <strong>nombres, direcciones o notificaciones que se hayan colado en la grabación</strong> antes de compartirla.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="Cómo funciona">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/video-markup.mp4" poster="media/video-markup-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="Diagrama animado: una flecha rosa dibujada sobre una grabación; luego se selecciona un tramo central, se corta y el clip queda más corto"></video>
+            </div>
+            <figcaption>Añade anotaciones, elimina el tramo que sobra y comparte</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Captura</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">Fíjala en la pantalla.</h2>
+          <p>Deja cualquier captura flotando <strong>por encima de las demás ventanas</strong> y tenla a la vista mientras trabajas, por ejemplo para comparar diseños o seguir unas instrucciones.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="Cómo funciona">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/pin.mp4" poster="media/pin-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="Diagrama animado de fijar una captura: otras ventanas pasan por detrás mientras la captura fijada se mantiene delante"></video>
+            </div>
+            <figcaption>Fijada y siempre delante</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Comparte</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">Saca el texto de cualquier captura.</h2>
+          <p>Con el OCR, un mensaje de error o el contenido de una tabla se convierten en <strong>texto que puedes copiar y pegar</strong>, en lugar de quedarse en una imagen.</p>
+          <p><strong>Si capturas una respuesta JSON, llega al portapapeles ya indentada.</strong> No hay nada que configurar: si el JSON es válido, se formatea, y si no, recibes el texto tal cual.</p>
+          <p>El reconocimiento se hace <strong>en tu Mac</strong>, con el framework Vision de Apple, y no se envía nada a ningún servidor. Está pensado principalmente para inglés y japonés.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="Cómo funciona">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/ocr.mp4" poster="media/ocr-poster.png" data-fallback="media/ocr.png" autoplay muted loop playsinline preload="metadata" aria-label="Diagrama animado: una línea de escaneo recorre una captura y los píxeles se convierten en texto seleccionable; un JSON llega al portapapeles ya indentado"></video>
+            </div>
+            <figcaption>Texto que no se podía seleccionar, extraído como texto</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">Comparte</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">La captura de hace un momento.</h2>
+          <p>El historial guarda tus últimas 50 capturas. <strong>Si alguien te pide que se la vuelvas a mandar, la tienes a mano.</strong></p>
+          <p>Se guarda <strong>solo en este Mac</strong>, no en la nube.</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <img src="media/history.png" alt="El menú de FletchShot en la barra de menús con el historial de capturas abierto, con las capturas y grabaciones recientes" loading="lazy">
+            </div>
+            <figcaption>Las últimas 50 capturas, guardadas en local</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">Y más</p>
+      <h2 class="head">Y unos cuantos detalles más.</h2>
+      <div class="four mini">
+        <div class="item">
+          <h3>Páginas largas en una sola imagen</h3>
+          <p>Desplázate por la página y FletchShot va uniendo las capturas. No necesita permisos adicionales.</p>
+        </div>
+        <div class="item">
+          <h3>También tus imágenes</h3>
+          <p>Arrastra una imagen al lienzo o al icono del Dock y dibuja sobre ella, aunque no la hayas capturado con FletchShot.</p>
+        </div>
+        <div class="item">
+          <h3>Temporizador</h3>
+          <p>Para menús y efectos que solo aparecen al pasar el cursor y desaparecen justo cuando vas a capturarlos.</p>
+        </div>
+        <div class="item">
+          <h3>Nombres de archivo a tu manera</h3>
+          <p>Usa plantillas con <strong>{date} {time} {index}</strong>. Las configuras una vez y cada captura se nombra según el criterio de tu equipo.</p>
+        </div>
+        <div class="item">
+          <h3>Sellos numerados</h3>
+          <p>Añade números para indicar el orden de los pasos. Formatos: 1/A/a/i.</p>
+        </div>
+        <div class="item">
+          <h3>Pixelar</h3>
+          <p>Tapa lo que prefieras no compartir, en capturas o en grabaciones.</p>
+        </div>
+        <div class="item">
+          <h3>Resaltador, formas, texto</h3>
+          <p>El resto de la barra de herramientas. Todo cabe en una fila y, si estrechas la ventana, lo que no cabe pasa a un menú.</p>
+        </div>
+        <div class="item">
+          <h3>Integración con Atajos</h3>
+          <p>Envía imágenes anotadas y grabaciones a tus propios atajos para renombrarlas, ordenarlas o mandarlas a otra app.</p>
+        </div>
+        <div class="item">
+          <h3>Atajo ⌥⌘4</h3>
+          <p>Seguramente ya lo tienes en los dedos. Puedes cambiarlo cuando quieras.</p>
+        </div>
+        <div class="item">
+          <h3>Cuatro estilos de letra</h3>
+          <p>Sistema, con serifa, marcador o manuscrita redondeada, según el tono que quieras darle a la nota.</p>
+        </div>
+        <div class="item">
+          <h3>Flechas en tres estilos</h3>
+          <p>Rellena, con borde o solo contorno. Para elegir, mantén presionado el botón de la flecha; no hay botones ni ajustes nuevos.</p>
+        </div>
+        <div class="item">
+          <h3>Dibuja una flecha y escribe</h3>
+          <p>Después de dibujar la flecha, ponte a escribir: el texto aparece en la cola de la flecha y del mismo color. Mantén presionada la tecla Mayúsculas para trazar flechas a 45°, cuadrados y círculos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <p class="kicker">Precio</p>
+      <h2 class="head">Pruébala 14 días gratis. Después, un solo pago.</h2>
+      <div class="deal">
+        <div class="price">Pago único<small>tras 14 días de prueba gratis (9,99 € en España · 199 MXN en México · 9,99 USD en EE. UU.)</small></div>
+        <ul>
+          <li>Descárgala gratis del Mac App Store. La prueba de 14 días empieza dentro de la app, cuando tú quieras</li>
+          <li>Durante la prueba funciona todo, incluidas la grabación y el OCR</li>
+          <li>Pasados los 14 días, puedes seguir capturando y dibujando gratis. Para guardar, copiar y compartir hace falta el desbloqueo de pago único</li>
+          <li>No hay suscripción ni renovación automática, y no necesitas cuenta</li>
+          <li>Nativa para Apple Silicon, macOS 14+ · Sin conexiones de red: la app no envía tus capturas a ningún servidor</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <p class="kicker">Preguntas frecuentes</p>
+      <h2 class="head">Resolvemos tus dudas.</h2>
+      <div class="faq">
+        <details>
+          <summary>¿Cuándo puedo usarla?</summary>
+          <p>Ya. FletchShot está en el Mac App Store: la descarga es gratis, puedes probarla 14 días y después se desbloquea con un pago único. No necesitas cuenta. Si quieres que te avisemos cuando salga la próxima versión importante, al final de estas preguntas puedes dejar tu correo (es opcional).</p>
+        </details>
+        <details>
+          <summary>¿Hay una prueba gratuita?</summary>
+          <p>Sí, de 14 días y con todo activado. Descarga la app gratis y, dentro de ella, haz clic en <strong>«Start 14-day trial»</strong> (empezar la prueba de 14 días). Hasta que termine la prueba, guardar, copiar y compartir funcionan igual que en la versión de pago. Durante la prueba no se te cobra nada: Apple solo cobra cuando haces clic en <strong>«Unlock»</strong> (desbloquear), al precio que aparezca en tu país. Pasados los 14 días, puedes seguir capturando y dibujando gratis; lo que requiere el desbloqueo es sacar las imágenes de la app, es decir, guardar el archivo, copiar al portapapeles, usar la pestaña de arrastre y el menú Compartir. Como es una compra única, no hay nada que se renueve automáticamente.</p>
+        </details>
+        <details>
+          <summary>¿Cuánto cuesta?</summary>
+          <p>La descarga es gratuita y la prueba de 14 días, también. Después, un <strong>pago único</strong> te permite guardar, copiar y compartir sin límite de tiempo: 9,99 € en España, 199 MXN en México o 9,99 USD en EE. UU. (en otros países, el precio que indique el App Store). No hay suscripción. La compra queda vinculada a tu cuenta de Apple y no se puede compartir con tu grupo familiar. Puede que en el futuro las actualizaciones importantes sean de pago, pero la versión que compres seguirá funcionando.</p>
+        </details>
+        <details>
+          <summary>¿Puedo pasarme desde Skitch?</summary>
+          <p>Para eso la hicimos. Comparamos la flecha afilada, la rapidez entre captura y anotación y la pestaña de arrastre con una copia real de Skitch 2.9, y las reconstruimos para que se sientan igual. El atajo predeterminado también es ⌥⌘4, y puedes empezar a escribir en cuanto dibujas una flecha. Si ya usabas Skitch, nuestro objetivo es que no tengas que volver a aprender nada.</p>
+        </details>
+        <details>
+          <summary>¿Por qué la app no se conecta a la red?</summary>
+          <p>Porque en las capturas de pantalla suele haber información privada. FletchShot está diseñada para no hacer ninguna conexión de red: el OCR se hace en tu Mac y la app no envía capturas ni grabaciones a ningún servidor. Qué compartes, y con quién, lo decides tú.</p>
+        </details>
+        <details>
+          <summary>¿En qué se diferencia de CleanShot X?</summary>
+          <p>CleanShot X es una herramienta profesional excelente, con más de 50 funciones y muchísimos ajustes. FletchShot va en otra dirección: está pensada para quien hace «captura → flecha → compartir» treinta veces al día y quiere hacerlo rápido. Incluimos las funciones más usadas en una versión sencilla, pero no competimos en número de ajustes. Además, por decisión propia, no tenemos nube ni cuentas.</p>
+        </details>
+        <details>
+          <summary>¿Qué necesito para usarla?</summary>
+          <p>macOS 14 o posterior. Es nativa para Apple Silicon y se distribuye a través del Mac App Store (App Sandbox).</p>
+        </details>
+        <details>
+          <summary>¿Solo quieres enterarte de la próxima actualización?</summary>
+          <p>Deja tu correo aquí abajo y te escribiremos una sola vez, cuando salga una versión importante. No te mandaremos boletines ni compartiremos tu correo con nadie.</p>
+          <form class="signup mini" novalidate>
+            <input type="hidden" name="source" value="direct">
+            <input type="hidden" name="lang" value="es">
+            <input type="hidden" name="intent" value="update-notice">
+            <input type="email" name="email" required placeholder="tu@ejemplo.com" aria-label="Correo electrónico">
+            <button type="submit">Avísame</button>
+          </form>
+          <p class="formmsg" role="status"></p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">Empieza</p>
+      <h2 class="head">Pruébala con tu próxima captura.</h2>
+      <div class="capture-decor" aria-hidden="true">
+        <span class="handle" style="top:-4px;left:-4px"></span>
+        <span class="handle" style="top:-4px;left:calc(50% - 3.5px)"></span>
+        <span class="handle" style="top:-4px;right:-4px"></span>
+        <span class="handle" style="top:calc(50% - 3.5px);left:-4px"></span>
+        <span class="handle" style="top:calc(50% - 3.5px);right:-4px"></span>
+        <span class="handle" style="bottom:-4px;left:-4px"></span>
+        <span class="handle" style="bottom:-4px;left:calc(50% - 3.5px)"></span>
+        <span class="handle" style="bottom:-4px;right:-4px"></span>
+        <span class="readout mono" aria-hidden="true">480 × 200</span>
+      </div>
+      <div class="cta-block">
+        <a class="storecta primary" data-store href="https://apps.apple.com/app/id6789836061" aria-label="Descarga FletchShot en el Mac App Store">
+          <span class="storecta-label">Descargar en el Mac App Store</span>
+        </a>
+        <p class="ctanote">macOS 14 o posterior · Gratis 14 días, después un pago único.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Producto</h4>
+        <a href="#demo">Demo real</a>
+        <a href="#features">Funciones</a>
+        <a href="#pricing">Precio</a>
+        <a href="#faq">Preguntas frecuentes</a>
+        <a href="help.html">Ayuda (en inglés)</a>
+        <a href="privacy.html">Privacidad (en inglés)</a>
+      </div>
+      <div>
+        <h4>Descárgala</h4>
+        <a data-store href="https://apps.apple.com/app/id6789836061">Mac App Store</a>
+        <a href="#faq">Aviso de actualizaciones</a>
+      </div>
+      <div>
+        <h4>Idioma</h4>
+        <a href="index.html">English</a>
+        <a href="ja.html">日本語</a>
+        <a href="de.html">Deutsch</a>
+        <a href="es.html">Español</a>
+        <a href="zh-tw.html">繁體中文</a>
+      </div>
+    </div>
+    <p><strong>FletchShot</strong>: para que tu mensaje dé en el blanco. <span class="mono">fletch (v.): poner plumas a una flecha para que vuele recta.</span></p>
+    <p>FletchShot es un producto independiente. No está afiliado a Evernote, Bending Spoons ni a los creadores de Skitch, ni cuenta con su respaldo ni tiene relación alguna con ellos. «Skitch» se menciona únicamente para describir la similitud en la experiencia de uso; todas las marcas comerciales pertenecen a sus respectivos propietarios.</p>
+    <p>Esta página no usa cookies. Solo cuenta los clics en los enlaces al Mac App Store y las altas en el aviso de actualizaciones.</p>
+  </div>
+</footer>
+
+<script src="lp.js"></script>
+</body>
+</html>

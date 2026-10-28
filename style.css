@@ -96,7 +96,7 @@ header.site {
   background: var(--pink); padding: 8px 16px; border-radius: 7px;
 }
 .nav .navcta:hover { filter: brightness(1.07); }
-@media (max-width: 680px) { .nav .navlink { display: none; } }
+@media (max-width: 680px) { .nav .navlink, .nav .lang { display: none; } .nav .navcta { white-space: nowrap; } }  /* 言語の切替はスマホではフッタの一覧から */
 .lang { font-size: 0.85rem; color: var(--muted); }
 .lang a { color: var(--muted); }
 .lang strong { color: var(--ink); font-weight: 600; }

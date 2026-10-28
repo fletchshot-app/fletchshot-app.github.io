@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FletchShot — 截圖、標註、傳出去，3 秒搞定</title>
+<meta name="description" content="FletchShot 是 Mac 截圖標註工具，截圖後就能畫箭頭、拖曳分享，也支援捲動截圖、螢幕錄影與文字辨識（OCR）。免費試用 14 天，之後 NT$320 一次買斷，沒有訂閱。">
+<meta property="og:title" content="FletchShot — 截圖、標註、傳出去，3 秒搞定">
+<meta property="og:description" content="截圖後馬上畫箭頭，拖曳就能傳到 Slack。也能錄影、輸出 GIF、辨識文字，設定項目不多。免費試用 14 天，之後 NT$320 一次買斷，沒有訂閱。已在 Mac App Store 上架。">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://fletchshot.app/zh-tw.html">
+<link rel="alternate" hreflang="en" href="https://fletchshot.app/">
+<link rel="alternate" hreflang="ja" href="https://fletchshot.app/ja.html">
+<link rel="alternate" hreflang="de" href="https://fletchshot.app/de.html">
+<link rel="alternate" hreflang="es" href="https://fletchshot.app/es.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://fletchshot.app/zh-tw.html">
+<link rel="alternate" hreflang="x-default" href="https://fletchshot.app/">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <a class="wordmark" href="#">
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 16 L13 5 L11 3 L16 2 L15 7 L13 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    FletchShot
+  </a>
+  <nav class="nav" aria-label="網站導覽">
+    <a class="navlink" href="#features">功能</a>
+    <a class="navlink" href="#pricing">價格</a>
+    <a class="navlink" href="#faq">常見問題</a>
+    <a class="navcta storecta" data-store href="https://apps.apple.com/app/id6789836061">在 App Store 取得</a>
+    <span class="lang" aria-label="語言"><a href="index.html">EN</a> · <a href="ja.html">日本語</a> · <a href="de.html">DE</a> · <a href="es.html">ES</a> · <strong>繁中</strong></span>
+  </nav>
+</header>
+
+<!-- 更新バナーの置き場所。点灯する版のときだけ div.updatebanner を置く（CSSは style.css に常設）。
+     直近の点灯: v2.1 継ぎ撮り（2026-08-27 点灯 → 2026-09-10 撤去。三井裁定=公開から2週間で消す） -->
+
+<main>
+  <div class="hero">
+    <canvas id="arrowCanvas" aria-hidden="true"></canvas>
+    <div class="wrap-wide hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">macOS 螢幕截圖標註工具</p>
+        <h1>截圖、標註、傳出去<br><span class="accent">3 秒</span>搞定</h1>
+        <p class="sub" id="arrowFrom">一截圖，標註視窗就開好了，<strong>箭頭工具也已經選好</strong>。畫完後<strong>抓住視窗底部的標籤，直接拖曳到 Slack、Finder 或終端機</strong>。錄影、GIF、文字辨識都有，設定項目卻不多，App 本身也不連網。<strong>可以先免費試用 14 天</strong>，之後付 NT$320 一次買斷，就能繼續儲存、拷貝和分享。</p>
+
+        <div class="capture-decor" aria-hidden="true">
+          <span class="handle" style="top:-4px;left:-4px"></span>
+          <span class="handle" style="top:-4px;left:calc(50% - 3.5px)"></span>
+          <span class="handle" style="top:-4px;right:-4px"></span>
+          <span class="handle" style="top:calc(50% - 3.5px);left:-4px"></span>
+          <span class="handle" style="top:calc(50% - 3.5px);right:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:calc(50% - 3.5px)"></span>
+          <span class="handle" style="bottom:-4px;right:-4px"></span>
+          <span class="readout mono" aria-hidden="true">480 × 200</span>
+        </div>
+
+        <div class="cta-block" id="get">
+          <a class="storecta badge" data-store href="https://apps.apple.com/app/id6789836061" aria-label="在 Mac App Store 下載 FletchShot">
+            <img src="badges/mac-app-store-badge-zh-tw.svg" alt="在 Mac App Store 下載" width="189" height="54">
+          </a>
+          <p class="ctanote">macOS 14 以上 · 免費試用 14 天，之後 NT$320 一次買斷 · 不需帳號，App 不連網</p>
+        </div>
+      </div>
+      <div class="hero-shot">
+        <figure class="media" data-media>
+          <div class="frame">
+            <span class="handle" style="top:-4px;left:-4px"></span>
+            <span class="handle" style="top:-4px;right:-4px"></span>
+            <span class="handle" style="bottom:-4px;left:-4px"></span>
+            <span class="handle" style="bottom:-4px;right:-4px"></span>
+            <video src="media/hero-loop.mp4" poster="media/hero-window.png" data-fallback="media/hero-window.png" autoplay muted loop playsinline preload="metadata" aria-label="FletchShot 循環示範：截圖、粉紅色漸細箭頭、底部的拖曳標籤"></video>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <section id="demo">
+    <div class="wrap-wide">
+      <p class="kicker">實機示範</p>
+      <h2 class="head">實際操作就是這麼快</h2>
+      <figure class="media" data-media>
+        <div class="frame">
+          <span class="handle" style="top:-4px;left:-4px"></span>
+          <span class="handle" style="top:-4px;right:-4px"></span>
+          <span class="handle" style="bottom:-4px;left:-4px"></span>
+          <span class="handle" style="bottom:-4px;right:-4px"></span>
+          <video src="media/demo-full.mp4" poster="media/demo-full-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="實機原速示範：快速鍵、截圖、箭頭標註，用拖曳標籤傳到 Slack"></video>
+        </div>
+        <figcaption>實機錄製、原速播放：快速鍵 → 選取範圍 → 畫箭頭 → 拖曳標籤到 Slack</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">我們堅持的事</p>
+      <h2 class="head">功能不少，操作依然簡單</h2>
+      <div class="four">
+        <div class="item">
+          <h3><span class="n mono">1</span>反應快</h3>
+          <p>從按下快速鍵到標註視窗打開，每一段反應時間都以毫秒為單位設定上限。會拖慢這段流程的功能，我們就不推出。</p>
+        </div>
+        <div class="item">
+          <h3><span class="n mono">2</span>功能多，設定少</h3>
+          <p>螢幕錄影、GIF、文字辨識、截圖紀錄都已內建，但每項功能只留幾個必要的設定。預設值就很好用，裝好就能上手，不必先研究一堆選項。</p>
+        </div>
+        <div class="item">
+          <h3><span class="n mono">3</span>不連網，不自動上傳</h3>
+          <p>App 本身不連網，不會自動上傳你的截圖或錄影，檔案要分享給誰，由你決定。不需要帳號，也沒有雲端服務。免費試用 14 天，之後 NT$320 一次買斷，不用訂閱。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap-wide">
+      <p class="kicker">標註</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">截完圖，馬上就能畫箭頭</h2>
+          <p>截圖一確定，標註視窗就跟著打開，<strong>箭頭工具已經選好</strong>。不會跳出儲存對話框，也不用先切換模式。</p>
+          <p>箭頭從細的尾端逐漸加寬，指向你要強調的位置。它是<strong>一整塊實心的形狀</strong>，不是在線條前端加個三角形；預設是粉紅色。</p>
+          <p>內建 9 種顏色，也能自選顏色。最近用過的 8 種會自動保留，方便再次選用。</p>
+          <p>每個標註都是獨立物件，之後還能再選取、移動或刪除。還原次數幾乎沒有上限，畫錯也不怕。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <img src="media/annotate.png" alt="FletchShot 標註視窗：在擷取的儀表板上畫了粉紅色漸細箭頭、矩形、文字與編號印章" loading="lazy">
+            </div>
+            <figcaption>標註視窗：實心的漸細箭頭，拖曳標籤在視窗底部</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">傳出去</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">抓住標籤，丟進 Slack</h2>
+          <p>畫完之後，拖曳視窗底部的標籤就好。拖到 <strong>Slack、郵件、Finder 或終端機</strong>，放開就是一個圖片檔。</p>
+          <p>過程中不會跳出對話框，不必先輸出、選擇儲存位置，再附加檔案。</p>
+          <p>習慣用剪貼簿的話，按 ⌘⇧C 就會拷貝並關閉視窗。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="運作示意">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/handoff.mp4" poster="media/handoff-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="動態示意圖：拖曳底部標籤，把標註好的圖片傳到聊天 App"></video>
+            </div>
+            <figcaption>拖過去放開就好，中間沒有對話框</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">截圖</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">同一個範圍，再拍一次</h2>
+          <p><strong>FletchShot 會記住上次選取的範圍，一個動作就能重拍。</strong>寫操作說明或回報錯誤時，常常要反覆截同一個畫面，這時就不必每次重新框選。</p>
+          <p>要擷取整個視窗，也只要按一個鍵，不必手動對齊邊緣。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="運作示意">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/capture.mp4" poster="media/capture-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="動態示意圖：重拍同一範圍。選取一次之後，按快速鍵就能擷取同一個範圍"></video>
+            </div>
+            <figcaption>重拍同一個範圍，不用重新框選</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">錄影</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">會動的畫面，就錄下來</h2>
+          <p>螢幕錄影可以選<strong>全螢幕、指定範圍或單一視窗</strong>。要不要顯示滑鼠點按提示，按一下就能切換。</p>
+          <p>輸出格式在視窗底部切換 <strong>MP4 或 GIF</strong>，畫質也只有一個選單：<strong>高、中、低</strong>。平常選「中」就好；想縮小檔案、方便傳到 Slack 時，再改成「低」。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="運作示意">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/recording.mp4" poster="media/recording-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="動態示意圖：螢幕錄影時顯示滑鼠點按提示，再用一個開關在 MP4 與 GIF 之間切換輸出"></video>
+            </div>
+            <figcaption>錄完之後，可以選擇輸出 MP4 或 GIF</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">影片標註</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">錄影上也能畫</h2>
+          <p>截圖用的箭頭、形狀、畫筆、印章、編號和文字，現在也能直接畫在錄影上，<strong>輸出後標註會保留在影片裡</strong>。</p>
+          <p><strong>除了頭尾，也能剪掉影片中間不需要的片段</strong>：選取那一段，按「剪下」就好。錄到冗長的停頓、開錯視窗或操作失誤，都不必為此重錄。</p>
+          <p>每個標註都能設定<strong>開始與結束時間</strong>，讓箭頭只在需要時出現。如果不小心錄進<strong>姓名、地址或通知</strong>，傳出去之前用馬賽克塗一下就能蓋住。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="運作示意">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/video-markup.mp4" poster="media/video-markup-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="動態示意圖：影片標註。在錄影上畫粉紅色箭頭，接著選取中間一段剪掉，留下較短的影片"></video>
+            </div>
+            <figcaption>加上標註、剪掉多餘片段，就能分享</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">截圖</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">把截圖釘在螢幕上</h2>
+          <p>任何截圖都能<strong>固定在所有視窗的最上層</strong>，方便一邊對照一邊工作，像是比對設計差異，或照著步驟操作。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="運作示意">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/pin.mp4" poster="media/pin-poster.png" autoplay muted loop playsinline preload="metadata" aria-label="動態示意圖：釘選截圖。其他視窗從後方經過，釘選的截圖始終留在最上層"></video>
+            </div>
+            <figcaption>釘選後會一直留在最上層</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">傳出去</p>
+      <div class="feature">
+        <div class="ftext">
+          <h2 class="head">文字，就用文字傳</h2>
+          <p>文字辨識（OCR）能從任何截圖中取出文字。錯誤訊息、表格內容，都能用<strong>可直接貼上的文字</strong>傳給對方，不必傳一張圖。</p>
+          <p><strong>擷取畫面上的 JSON 回應後，會自動整理格式與縮排，再拷貝到剪貼簿。</strong>不用設定，也不用另外按按鈕；無法解析時，就照原樣給你文字。</p>
+          <p>辨識全程在<strong>裝置上</strong>完成（使用 Apple 的 Vision 框架），不會傳送到任何地方。目前文字辨識以英文、日文為主。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame" data-diagram="運作示意">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <video src="media/ocr.mp4" poster="media/ocr-poster.png" data-fallback="media/ocr.png" autoplay muted loop playsinline preload="metadata" aria-label="動態示意圖：掃描線掃過截圖，像素變成可選取的文字，JSON 進到剪貼簿時已排好縮排"></video>
+            </div>
+            <figcaption>無法選取的文字，也能拷貝出來</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap-wide">
+      <p class="kicker">傳出去</p>
+      <div class="feature flip">
+        <div class="ftext">
+          <h2 class="head">剛剛那張，馬上找回來</h2>
+          <p>截圖紀錄會保留最近 50 筆。<strong>有人問「那張可以再傳一次嗎？」，從選單列就能馬上找到。</strong></p>
+          <p>紀錄只存放<strong>在這台 Mac 上</strong>，不會上傳到雲端。</p>
+        </div>
+        <div class="fmedia">
+          <figure class="media" data-media>
+            <div class="frame">
+              <span class="handle" style="top:-4px;left:-4px"></span>
+              <span class="handle" style="top:-4px;right:-4px"></span>
+              <span class="handle" style="bottom:-4px;left:-4px"></span>
+              <span class="handle" style="bottom:-4px;right:-4px"></span>
+              <img src="media/history.png" alt="FletchShot 選單列選單中打開的截圖紀錄，列出最近的截圖與錄影" loading="lazy">
+            </div>
+            <figcaption>最近 50 筆，保存在本機</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">還有更多</p>
+      <h2 class="head">其他用得到的小功能</h2>
+      <div class="four mini">
+        <div class="item">
+          <h3>長頁面截成一張</h3>
+          <p>捲動截圖：捲動視窗，就能把長頁面接成一張圖，不需額外開啟「輔助使用」權限。</p>
+        </div>
+        <div class="item">
+          <h3>現有圖片也能畫</h3>
+          <p>把圖片拖到標註視窗或 Dock 圖示上就能開始標註，不限於自己截的圖。</p>
+        </div>
+        <div class="item">
+          <h3>延遲截圖</h3>
+          <p>選單、滑鼠移上去才出現的提示，這些一按快速鍵就消失的畫面，也能好好截下來。</p>
+        </div>
+        <div class="item">
+          <h3>檔名自己決定</h3>
+          <p>用 <strong>{date} {time} {index}</strong> 組合檔名範本。設定一次，之後每張截圖都會照團隊的命名規則存檔。</p>
+        </div>
+        <div class="item">
+          <h3>編號印章</h3>
+          <p>依序放上 1→2→3，標出操作順序。編號格式可選 1/A/a/i。</p>
+        </div>
+        <div class="item">
+          <h3>馬賽克</h3>
+          <p>不想讓人看到的地方，塗一下就能蓋住，截圖和錄影都能用。</p>
+        </div>
+        <div class="item">
+          <h3>螢光筆、形狀、文字</h3>
+          <p>其他工具都排在工具列上；視窗縮小放不下時，會自動收進選單。</p>
+        </div>
+        <div class="item">
+          <h3>捷徑整合</h3>
+          <p>標註好的圖片和錄影可以交給你自己設定的「捷徑」，用來重新命名、分類或轉送。</p>
+        </div>
+        <div class="item">
+          <h3>快速鍵 ⌥⌘4</h3>
+          <p>預設就是用過 Skitch 的人熟悉的那組按鍵，也可以自行更改。</p>
+        </div>
+        <div class="item">
+          <h3>文字，4 種字體</h3>
+          <p>系統字體、襯線字體、麥克筆和圓潤的手寫體。換個字體，標註給人的感覺就不一樣。</p>
+        </div>
+        <div class="item">
+          <h3>箭頭，3 種樣式</h3>
+          <p>實心、實心加框、只有外框。長按箭頭按鈕就能切換，不會多出按鈕或設定。</p>
+        </div>
+        <div class="item">
+          <h3>畫完箭頭，直接打字</h3>
+          <p>不用切換工具，文字會從箭頭尾端開始，顏色也和箭頭一樣。按住 Shift 可以畫 45° 箭頭、正方形和正圓。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <p class="kicker">價格</p>
+      <h2 class="head">先免費用 14 天，再決定要不要買</h2>
+      <div class="deal">
+        <div class="price">NT$320<small>免費試用 14 天，之後可一次買斷</small></div>
+        <ul>
+          <li>從 Mac App Store 免費下載，想開始時在 App 內點一下，就能開始 14 天試用</li>
+          <li>試用期間所有功能都能用，包括截圖、標註、錄影和文字辨識</li>
+          <li>試用結束後，截圖和標註仍可免費使用；要儲存、拷貝或分享時，再以 NT$320 一次買斷解鎖</li>
+          <li>沒有訂閱，不需帳號，也不會自動續訂</li>
+          <li>原生支援 Apple Silicon，macOS 14 以上 · App 不連網，不會自動上傳你的截圖</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <p class="kicker">常見問題</p>
+      <h2 class="head">常見問題</h2>
+      <div class="faq">
+        <details>
+          <summary>什麼時候可以用？</summary>
+          <p>現在就可以。FletchShot 已在 Mac App Store 上架，免費下載後可試用 14 天，之後一次買斷解鎖，不需要帳號。想在下一個主要版本推出時收到通知的話，可以在常見問題最後留下電子郵件（選填）。</p>
+        </details>
+        <details>
+          <summary>可以免費試用嗎？</summary>
+          <p>可以，14 天內所有功能都能用。免費下載 App 後，在 App 內點<strong>「開始 14 天試用」</strong>，試用期間儲存、拷貝、分享都和購買後一樣。試用不收任何費用，只有在你點下 NT$320 的<strong>「解鎖」</strong>時，Apple 才會收款。14 天後仍可免費截圖和標註；要儲存檔案、拷貝到剪貼簿、使用拖曳標籤或分享選單時，才需要解鎖。因為是一次買斷，不會自動續訂。</p>
+        </details>
+        <details>
+          <summary>價格多少？</summary>
+          <p>免費下載，可免費試用 14 天。之後以 <strong>NT$320</strong> 一次買斷解鎖，就能一直使用儲存、拷貝與分享功能，沒有訂閱。本 App 不支援「家人共享」，購買的解鎖功能僅適用於同一個 Apple 帳號。未來的主要版本升級可能另行收費；已購買的版本不需續費。</p>
+        </details>
+        <details>
+          <summary>可以從 Skitch 換過來嗎？</summary>
+          <p>可以，這就是我們做 FletchShot 的初衷。漸細箭頭的手感、截圖後立刻進入標註、底部的拖曳標籤，都是實際對照 Skitch 2.9 測量後重新做的。預設快速鍵一樣是 ⌥⌘4，畫完箭頭也能直接打字。我們最看重的是：用慣 Skitch 的人不必重新學，就能直接上手。</p>
+        </details>
+        <details>
+          <summary>為什麼不連網？</summary>
+          <p>因為截圖可能包含工作資料或個人資訊。FletchShot 從設計上就不做任何網路連線：文字辨識在裝置上處理，App 也不會自動上傳截圖或錄影，要分享給誰由你決定。</p>
+        </details>
+        <details>
+          <summary>和 CleanShot X 有什麼不同？</summary>
+          <p>CleanShot X 是很出色的專業工具，有 50 多項功能和細緻的設定。FletchShot 的方向不同，是圍繞「截圖、畫箭頭、傳出去」這個一天可能重複幾十次的動作來設計。我們提供常用的截圖與標註功能，設定也盡量簡單，方便快速操作；雲端和帳號則是刻意不做。</p>
+        </details>
+        <details>
+          <summary>系統需求是什麼？</summary>
+          <p>macOS 14 以上，原生支援 Apple Silicon。透過 Mac App Store 發行（App Sandbox）。</p>
+        </details>
+        <details>
+          <summary>只想知道下次更新？</summary>
+          <p>在下方留下電子郵件，主要版本推出時，我們只會寄一封通知給你。不會寄電子報，也不會把你的地址提供給第三方。</p>
+          <form class="signup mini" novalidate>
+            <input type="hidden" name="source" value="direct">
+            <input type="hidden" name="lang" value="zh-Hant">
+            <input type="hidden" name="intent" value="update-notice">
+            <input type="email" name="email" required placeholder="you@example.com" aria-label="電子郵件地址">
+            <button type="submit">通知我</button>
+          </form>
+          <p class="formmsg" role="status"></p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">開始使用</p>
+      <h2 class="head">下一張截圖，就用 FletchShot</h2>
+      <div class="capture-decor" aria-hidden="true">
+        <span class="handle" style="top:-4px;left:-4px"></span>
+        <span class="handle" style="top:-4px;left:calc(50% - 3.5px)"></span>
+        <span class="handle" style="top:-4px;right:-4px"></span>
+        <span class="handle" style="top:calc(50% - 3.5px);left:-4px"></span>
+        <span class="handle" style="top:calc(50% - 3.5px);right:-4px"></span>
+        <span class="handle" style="bottom:-4px;left:-4px"></span>
+        <span class="handle" style="bottom:-4px;left:calc(50% - 3.5px)"></span>
+        <span class="handle" style="bottom:-4px;right:-4px"></span>
+        <span class="readout mono" aria-hidden="true">480 × 200</span>
+      </div>
+      <div class="cta-block">
+        <a class="storecta primary" data-store href="https://apps.apple.com/app/id6789836061" aria-label="在 Mac App Store 下載 FletchShot">
+          <span class="storecta-label">在 Mac App Store 下載</span>
+        </a>
+        <p class="ctanote">macOS 14 以上 · 免費試用 14 天，之後 NT$320 一次買斷</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>產品</h4>
+        <a href="#demo">實機示範</a>
+        <a href="#features">功能</a>
+        <a href="#pricing">價格</a>
+        <a href="#faq">常見問題</a>
+        <a href="help.html">說明（英文）</a>
+        <a href="privacy.html">隱私權（英文）</a>
+      </div>
+      <div>
+        <h4>取得</h4>
+        <a data-store href="https://apps.apple.com/app/id6789836061">Mac App Store</a>
+        <a href="#faq">更新通知</a>
+      </div>
+      <div>
+        <h4>語言</h4>
+        <a href="index.html">English</a>
+        <a href="ja.html">日本語</a>
+        <a href="de.html">Deutsch</a>
+        <a href="es.html">Español</a>
+        <a href="zh-tw.html">繁體中文</a>
+      </div>
+    </div>
+    <p><strong>FletchShot</strong> — 用箭頭標出重點，讓對方一看就懂。<span class="mono">fletch（動詞）：為箭裝上箭羽，使其飛得筆直。</span></p>
+    <p>FletchShot 是一款獨立產品，與 Evernote、Bending Spoons 及 Skitch 的開發者並無任何隸屬、背書或關聯。提及「Skitch」僅為說明操作方式上的相似之處；所有商標均屬其各自所有者。</p>
+    <p>本頁面不使用 Cookie，只計算 Mac App Store 連結的點擊次數和更新通知的登記人數。</p>
+  </div>
+</footer>
+
+<script src="lp.js"></script>
+</body>
+</html>
