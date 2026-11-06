@@ -44,6 +44,11 @@ var STORE_BEACON_ENDPOINT = "https://nft66gogfr5azd2tshdlf4ucfa0ksqyi.lambda-url
      HTML側の [data-store] href には実URLを直書きしてある（JS無効でもストアへ飛ぶ・
      2026-10-08）。ここでは ?src= を付け足すだけ。APP_STORE_URL とHTMLの href は
      同じURLに保つこと。 */
+  /* 押されたページ（例: index・ja・skitch-macos-28・skitch-macos-28-ja）。
+     解説ページからストアへ進んだ数を、流入元別に分けて数えるため（2026-11-06・issue #22）。
+     受け口（beacon/handler.py）の文字種 [A-Za-z0-9_-] に収まる形にする */
+  var page = (location.pathname.split("/").pop() || "index").replace(/\.html$/, "") || "index";
+
   var storePlaceholder = /idXXXXXXXXXX/.test(APP_STORE_URL);
   document.querySelectorAll("[data-store]").forEach(function (a) {
     if (storePlaceholder) {
@@ -57,7 +62,7 @@ var STORE_BEACON_ENDPOINT = "https://nft66gogfr5azd2tshdlf4ucfa0ksqyi.lambda-url
     a.addEventListener("click", function () {
       if (!STORE_BEACON_ENDPOINT) return;
       var lang = document.documentElement.lang;
-      var body = new URLSearchParams({ intent: "store-click", src: src, lang: lang });
+      var body = new URLSearchParams({ intent: "store-click", src: src, lang: lang, page: page });
       if (navigator.sendBeacon) {
         navigator.sendBeacon(STORE_BEACON_ENDPOINT, body);
       } else {

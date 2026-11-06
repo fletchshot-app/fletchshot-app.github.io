@@ -345,3 +345,5 @@ kbd{display:inline-block;padding:1px 7px;border:1px solid var(--line);border-bot
 .prose h3{margin:28px 0 8px;font-size:1.05rem}
 .prose ul{margin:12px 0 0 1.3em;color:var(--muted)}
 .prose li{margin:6px 0}
+/* 解説ページ（skitch-macos-28）の本文中の画像。見出しの直下に置くので上の余白を詰める（issue #22） */
+.prose .media{margin-top:16px}
