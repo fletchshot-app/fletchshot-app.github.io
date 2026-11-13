@@ -116,6 +116,31 @@
   </div>
 </section>
 
+<section id="agent">
+  <div class="wrap prose">
+    <p class="kicker">Agents</p>
+    <h2 class="head">Working with a coding agent</h2>
+    <p>A coding agent such as Claude Code, Cursor or Codex takes a screenshot, drafts the arrows, text and mosaic, and opens the <strong>draft</strong> in FletchShot. You fix the positions and wording, then press <strong>Return</strong> (<kbd>⌘↩</kbd>). The agent receives the finished image and carries on — pasting it into a README or a PR.</p>
+    <h3>Setup</h3>
+    <p>Register the free MCP server <code>fletchshot-mcp</code> with your agent. Nothing to set up inside FletchShot.</p>
+    <ul>
+      <li><strong>Claude Code</strong> — <code>claude mcp add fletchshot -- npx -y fletchshot-mcp</code></li>
+      <li><strong>Codex CLI</strong> — <code>codex mcp add fletchshot -- npx -y fletchshot-mcp</code></li>
+      <li><strong>Cursor</strong> — add <code>"fletchshot": {"command": "npx", "args": ["-y", "fletchshot-mcp"]}</code> under <code>mcpServers</code> in <code>.cursor/mcp.json</code>.</li>
+    </ul>
+    <p>Requires Node.js 18 or later. To take screenshots, the terminal (or editor) running your agent needs <strong>Screen Recording</strong> permission (System Settings › Privacy &amp; Security › Screen Recording). Capturing a single window also uses the Xcode Command Line Tools (<code>xcode-select --install</code>).</p>
+    <h3>How it goes</h3>
+    <ul>
+      <li>Ask the agent to “put an arrow and a note on this part of the screen”, or approve what it proposes.</li>
+      <li>A draft note opens. Grab and move the arrows and text as usual.</li>
+      <li>When you are done, click <strong>Return</strong> in the toolbar or press <kbd>⌘↩</kbd>. The note closes and the agent gets the finished image. While you are typing text, <kbd>⌘↩</kbd> only commits the text.</li>
+    </ul>
+    <h3>The image reaches the agent only when you press Return</h3>
+    <p>FletchShot does not use the network. An image goes to the agent only when you press Return (<kbd>⌘↩</kbd>) in a draft note — never through copy, save, drag, share or Send to Shortcuts. Only the finished image, with mosaics burned in, is returned. Whether the agent then sends it to an AI service depends on that agent’s own settings.</p>
+    <p>The Return button appears only in notes opened from an agent’s draft. Your usual <kbd>⌥⌘4</kbd> notes look exactly the same as before.</p>
+  </div>
+</section>
+
 <section id="record">
   <div class="wrap prose">
     <p class="kicker">Record</p>
@@ -171,6 +196,7 @@
       <tr><td>Copy</td><td><kbd>⌘C</kbd></td></tr>
       <tr><td>Copy and close</td><td><kbd>⇧⌘C</kbd></td></tr>
       <tr><td>Pin</td><td><kbd>⌘P</kbd></td></tr>
+      <tr><td>Return to the agent (draft notes only)</td><td><kbd>⌘↩</kbd></td></tr>
     </table>
     <h3>Recipes</h3>
     <ul>

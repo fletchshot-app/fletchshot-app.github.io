@@ -347,3 +347,9 @@ kbd{display:inline-block;padding:1px 7px;border:1px solid var(--line);border-bot
 .prose li{margin:6px 0}
 /* 解説ページ（skitch-macos-28）の本文中の画像。見出しの直下に置くので上の余白を詰める（issue #22） */
 .prose .media{margin-top:16px}
+
+/* ---- 案内ページ（agent.html / agent-ja.html）専用 ----
+   導入コマンドの1行ブロック。help 系の <code> の見た目は変えないよう、専用クラスだけに当てる */
+.cmd{display:block;margin-top:14px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;
+  background:var(--card);color:var(--ink);font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,monospace;
+  font-size:.86rem;line-height:1.6;overflow-x:auto;white-space:pre;-webkit-user-select:all;user-select:all}

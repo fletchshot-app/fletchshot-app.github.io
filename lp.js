@@ -33,10 +33,16 @@ var STORE_BEACON_ENDPOINT = "https://nft66gogfr5azd2tshdlf4ucfa0ksqyi.lambda-url
      相対リンクに ?src= を付け直す。直接訪問（direct）はURLを汚さない。
      （2026-10-08: 言語切替で流入元が失われる指摘への対処） --- */
   if (src !== "direct") {
-    document.querySelectorAll('a[href$=".html"]').forEach(function (a) {
+    /* 2026-11-12: アンカー付き（例 help-ja.html#agent）も対象に加えた。案内ページ
+       （agent.html／agent-ja.html）の「導入方法」はヘルプの #agent へ送るため、
+       ここを拾わないと ?src=mcp がヘルプ以降で落ちる。フッタの ja.html#features 等も同様に救う */
+    document.querySelectorAll('a[href$=".html"], a[href*=".html#"]').forEach(function (a) {
       var href = a.getAttribute("href");
       if (!href || href.indexOf("://") >= 0 || href.indexOf("?") >= 0) return;
-      a.setAttribute("href", href + "?src=" + encodeURIComponent(src));
+      var hash = href.indexOf("#");
+      var path = hash >= 0 ? href.slice(0, hash) : href;
+      var frag = hash >= 0 ? href.slice(hash) : "";
+      a.setAttribute("href", path + "?src=" + encodeURIComponent(src) + frag);
     });
   }
 

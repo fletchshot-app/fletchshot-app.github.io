@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your agent drafts it. You finish it. | FletchShot</title>
+<meta name="description" content="Claude Code, Cursor or Codex takes a screenshot, drafts the arrow and the one-liner, and opens it in FletchShot. You fix the positions and press ⌘↩. The finished image goes back to the agent, into a README or a PR. Connected by the free MCP server fletchshot-mcp.">
+<meta property="og:title" content="Your agent drafts it. You finish it. — FletchShot MCP">
+<meta property="og:description" content="The agent drafts, you fix it and press ⌘↩, the agent gets it back. Annotations open as objects you can grab, not pixels burned into the image.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://fletchshot.app/agent.html">
+<link rel="alternate" hreflang="en" href="https://fletchshot.app/agent.html">
+<link rel="alternate" hreflang="ja" href="https://fletchshot.app/agent-ja.html">
+<link rel="alternate" hreflang="x-default" href="https://fletchshot.app/agent.html">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <a class="wordmark" href="index.html">
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 16 L13 5 L11 3 L16 2 L15 7 L13 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    FletchShot
+  </a>
+  <nav class="nav" aria-label="Site">
+    <a class="navlink" href="index.html">Home</a>
+    <a class="navlink" href="help.html#agent">Setup</a>
+    <a class="navcta storecta" data-store href="https://apps.apple.com/app/id6789836061">Get it on the App Store</a>
+    <span class="lang" aria-label="Language"><strong>EN</strong> · <a href="agent-ja.html">日本語</a></span>
+  </nav>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <p class="kicker">For coding agents</p>
+    <h1 class="head">Your agent drafts it. You finish it.</h1>
+    <p>A coding agent — Claude Code, Cursor, Codex — takes the screenshot, drafts the arrow and the one-liner, and opens that <strong>draft</strong> in FletchShot. You fix the positions and the wording, then press <kbd>⌘↩</kbd>. The finished image goes back to the agent, which carries it the rest of the way: into a README, a PR, a bug report.</p>
+    <p>The bridge is a free MCP server, <code>fletchshot-mcp</code>. There is nothing to configure inside FletchShot.</p>
+    <div class="cta-block">
+      <a class="storecta primary" data-store href="https://apps.apple.com/app/id6789836061">Try FletchShot free for 14 days</a>
+      <p class="ctanote">macOS 14+ ・ Free download, 14-day trial, then $9.99 once ・ The MCP server is free. No extra charge for the agent side.</p>
+    </div>
+  </div>
+</section>
+
+<section id="flow">
+  <div class="wrap prose">
+    <h2 class="head">What happens</h2>
+    <div class="four">
+      <div class="item">
+        <h3><span class="n">1</span>The agent captures and drafts</h3>
+        <p>Ask it to “put an arrow and a note on this part of the screen”, or just approve what it proposes. Which window to capture, where the arrow points, what the label says — the agent decides all of it.</p>
+      </div>
+      <div class="item">
+        <h3><span class="n">2</span>You fix it, then <kbd>⌘↩</kbd></h3>
+        <p>A draft note opens. Arrows, text and mosaics are all grabbable, exactly as usual. When it looks right, hit <strong>Return</strong> (<kbd>⌘↩</kbd>) and the note closes.</p>
+      </div>
+      <div class="item">
+        <h3><span class="n">3</span>The agent picks it up and moves on</h3>
+        <p>It receives the flattened image — and pastes it into the README, attaches it to the PR, adds it to the issue. That part is the agent's job again.</p>
+      </div>
+    </div>
+    <figure class="media" data-media>
+      <div class="frame">
+        <img src="media/annotate.png" alt="The FletchShot annotation window: a captured screen with a pink tapered arrow, a box, text and a numbered stamp drawn on it" width="1090" height="740" loading="lazy">
+      </div>
+      <figcaption>The FletchShot annotation window (a real screenshot). An agent's draft opens in this same window.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap prose">
+    <h2 class="head">Why put FletchShot in the middle</h2>
+    <p>There are other MCP servers that annotate a screenshot and hand it back. Most of them return <strong>pixels with the annotation burned in</strong>. When the agent gets it right, that is perfectly fine. It is the near-misses that hurt: the arrowhead lands a few dozen pixels off and covers the very word it points at, the label overlaps a line of body text. Once it is burned into the pixels, you cannot nudge it. Your choices are to re-prompt and hope, or to let it go.</p>
+    <p>FletchShot opens the draft as <strong>annotations you can grab</strong>. A misplaced arrow gets dragged where it belongs. Wrong wording gets retyped. Something you would rather not show gets a mosaic you add yourself. Fixing beats re-prompting more often than you would guess.</p>
+    <table class="helptable">
+      <tr><th></th><th>Burned into pixels</th><th>Opened in FletchShot</th></tr>
+      <tr><td>Arrow is slightly off</td><td>Ask again</td><td>Drag it</td></tr>
+      <tr><td>Wrong wording</td><td>Ask again</td><td>Retype it</td></tr>
+      <tr><td>Something shouldn't be visible</td><td>Recapture</td><td>Add a mosaic on the spot</td></tr>
+      <tr><td>When the agent gets the image</td><td>At capture time</td><td>When you press Return</td></tr>
+    </table>
+    <h3>If you only need the agent to look at your screen, skip this</h3>
+    <p>To simply show an agent what is on screen, <code>screencapture</code> — already in macOS — is enough: <code>-l</code> for a single window, <code>-R</code> for a region. FletchShot earns its place when <strong>the image is headed for a person</strong>: whoever reads the README, reviews the PR, or opens your support reply.</p>
+  </div>
+</section>
+
+<section id="privacy">
+  <div class="wrap prose">
+    <h2 class="head">The image reaches the agent only when you press Return</h2>
+    <p>FletchShot does not use the network. An image goes to the agent only when you press <strong>Return</strong> (<kbd>⌘↩</kbd>) inside a draft note.</p>
+    <ul>
+      <li>Copy (<kbd>⌘C</kbd>), save, drag, share and Send to Shortcuts <strong>do not return anything</strong>. Handing an image to someone else is not read as consent to hand it to an agent.</li>
+      <li>Only the <strong>finished image, with mosaics burned in</strong>, is returned. The unannotated original never is.</li>
+      <li>The Return button appears <strong>only in notes opened from an agent's draft</strong>. Your usual <kbd>⌥⌘4</kbd> notes look exactly the same as they always did.</li>
+      <li><code>fletchshot-mcp</code> speaks stdio only and uses no network at all. It does not watch your screen, and it does not read FletchShot's documents on its own.</li>
+    </ul>
+    <p>What happens to the image after you return it depends on your agent's own settings — if it sends images to its AI backend, that is where this one goes too. Which is the whole point of <strong>looking at it before you return it</strong>.</p>
+  </div>
+</section>
+
+<section id="setup">
+  <div class="wrap prose">
+    <h2 class="head">Setup</h2>
+    <p>Install FletchShot from the Mac App Store, then register the MCP server with your agent.</p>
+    <code class="cmd">claude mcp add fletchshot -- npx -y fletchshot-mcp</code>
+    <p>Cursor and Codex CLI config, the permission you need (Screen Recording), and the details are in the help page.</p>
+    <p><a href="help.html#agent"><strong>Help: Working with a coding agent →</strong></a></p>
+    <h3>What you need</h3>
+    <ul>
+      <li>macOS 14 or later, and FletchShot (Mac App Store build)</li>
+      <li>Node.js 18 or later (to run the MCP server via <code>npx</code>)</li>
+      <li><strong>Screen Recording</strong> permission for the terminal or editor running your agent (System Settings › Privacy &amp; Security › Screen Recording). Capturing a single window also uses the Xcode Command Line Tools</li>
+    </ul>
+    <h3>Price</h3>
+    <p>The MCP server is free. FletchShot is a free download with a 14-day full trial, then <strong>$9.99 once</strong> (Full Unlock) — and the agent side is part of that same unlock. <strong>No subscription, no separate add-on.</strong></p>
+    <div class="cta-block">
+      <a class="storecta primary" data-store href="https://apps.apple.com/app/id6789836061">Try FletchShot free for 14 days</a>
+      <p class="ctanote">From the Mac App Store. No account, no subscription, and the app never talks to the network.</p>
+    </div>
+  </div>
+</section>
+
+<section id="scope">
+  <div class="wrap prose">
+    <h2 class="head">What this deliberately doesn't do</h2>
+    <p>This path is scoped to one thing: an agent's draft, finished by a human, handed back. The following are left out on purpose.</p>
+    <ul>
+      <li><strong>Any route that returns an image without a human acting</strong> — auto-return, “it's ready” notifications, reusing copy or save as a hand-off.</li>
+      <li><strong>Letting the agent drive your screen</strong> — screen watching, UI automation, agents looking at the result and silently redrawing in a loop.</li>
+      <li><strong>Settings inside FletchShot</strong>. There is no preference pane for this. Setup conventions change on the agent's side, so they live in <a href="help.html#agent">the help page</a>, where they can be fixed without shipping an app update.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Product</h4>
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="help.html">Help</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+      <div>
+        <h4>Agents</h4>
+        <a href="help.html#agent">Setup</a>
+        <a href="agent-ja.html">日本語</a>
+      </div>
+      <div>
+        <h4>Get it</h4>
+        <a data-store href="https://apps.apple.com/app/id6789836061">Mac App Store</a>
+      </div>
+    </div>
+    <p><strong>FletchShot</strong> — make your point fly straight. <span class="mono">fletch (v.): to fit an arrow with feathers so it flies true.</span></p>
+    <p>FletchShot is an independent product. It is not affiliated with, endorsed by, or partnered with Claude, Cursor, Codex or their makers. All trademarks belong to their respective owners.</p>
+    <p>This page sets no cookies. The only thing counted is clicks on the Mac App Store link.</p>
+  </div>
+</footer>
+
+<script src="lp.js"></script>
+</body>
+</html>
