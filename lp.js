@@ -302,3 +302,47 @@ var STORE_BEACON_ENDPOINT = "https://nft66gogfr5azd2tshdlf4ucfa0ksqyi.lambda-url
     setTimeout(function () { raf = requestAnimationFrame(animate); }, 350);
   }
 })();
+
+/* --- 導入コマンドをクリックでコピー（help・agent の .copyable） --- */
+(function () {
+  "use strict";
+  var ja = (document.documentElement.lang || "").indexOf("ja") === 0;
+  var label = ja ? "コピーしました" : "Copied";
+  var hint = ja ? "クリックでコピー" : "Click to copy";
+
+  function fallbackSelect(el) {
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(r);
+  }
+
+  function copy(el) {
+    var text = el.textContent;
+    var done = function () {
+      el.setAttribute("data-copied", label);
+      el.classList.add("copied");
+      clearTimeout(el._copiedTimer);
+      el._copiedTimer = setTimeout(function () { el.classList.remove("copied"); }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallbackSelect(el); });
+    } else {
+      fallbackSelect(el);
+    }
+  }
+
+  var els = document.querySelectorAll(".copyable");
+  for (var i = 0; i < els.length; i++) {
+    (function (el) {
+      el.setAttribute("role", "button");
+      el.setAttribute("tabindex", "0");
+      el.setAttribute("title", hint);
+      el.addEventListener("click", function () { copy(el); });
+      el.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); copy(el); }
+      });
+    })(els[i]);
+  }
+})();
