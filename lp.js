@@ -303,6 +303,18 @@ var STORE_BEACON_ENDPOINT = "https://nft66gogfr5azd2tshdlf4ucfa0ksqyi.lambda-url
   }
 })();
 
+/* --- セールの表示: 価格欄の .sale-note を、data-sale-start 以上 data-sale-end 未満の間だけ出す。
+   期間が過ぎれば、公開し直さなくても消える。ヒーローの処理は途中で return するので、別の関数に置く --- */
+(function () {
+  "use strict";
+  var now = Date.now();
+  document.querySelectorAll(".sale-note").forEach(function (el) {
+    var start = Date.parse(el.getAttribute("data-sale-start"));
+    var end = Date.parse(el.getAttribute("data-sale-end"));
+    if (now >= start && now < end) el.hidden = false;
+  });
+})();
+
 /* --- 導入コマンドをクリックでコピー（help・agent の .copyable） --- */
 (function () {
   "use strict";
