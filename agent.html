@@ -83,7 +83,7 @@
       <tr><td>Arrow is slightly off</td><td>Ask again</td><td>Drag it</td></tr>
       <tr><td>Wrong wording</td><td>Ask again</td><td>Retype it</td></tr>
       <tr><td>Something shouldn't be visible</td><td>Recapture</td><td>Add a mosaic on the spot</td></tr>
-      <tr><td>When the agent gets the image</td><td>At capture time</td><td>When you press Return</td></tr>
+      <tr><td>When the agent gets the image</td><td>At capture time</td><td>When you press Return (or at burn time, if you asked for a quiet burn)</td></tr>
     </table>
     <h3>If you only need the agent to look at your screen, skip this</h3>
     <p>To simply show an agent what is on screen, <code>screencapture</code> — already in macOS — is enough: <code>-l</code> for a single window, <code>-R</code> for a region. FletchShot earns its place when <strong>the image is headed for a person</strong>: whoever reads the README, reviews the PR, or opens your support reply.</p>
@@ -92,15 +92,17 @@
 
 <section id="privacy">
   <div class="wrap prose">
-    <h2 class="head">The image reaches the agent only when you press Return</h2>
-    <p>FletchShot does not use the network. An image goes to the agent only when you press <strong>Return</strong> (<kbd>⌘↩</kbd>) inside a draft note.</p>
+    <h2 class="head">The image reaches the agent only when you press Return, or when a draft is burned quietly</h2>
+    <p>FletchShot does not use the network. An image goes to the agent only when you press <strong>Return</strong> (<kbd>⌘↩</kbd>) inside a draft note, or when the agent marked the draft to be <strong>burned quietly</strong>.</p>
     <ul>
+      <li><strong>Burning quietly</strong> (FletchShot 2.5.0 or later) is for light annotations that need no touch-up. Ask the agent to “burn it in quietly” and FletchShot burns in the annotations without opening a note and returns the image to the same file. It goes back <strong>before you see it</strong>, so don't use it for anything you want to check first. FletchShot has no setting that makes this the default.</li>
+      <li>You can reopen a quietly burned image from the Agent-Burned Images menu and fix it. The copies kept for that (the image before burning and its annotations) stay inside FletchShot and are <strong>never given to the agent</strong>.</li>
       <li>Copy (<kbd>⌘C</kbd>), save, drag, share and Send to Shortcuts <strong>do not return anything</strong>. Handing an image to someone else is not read as consent to hand it to an agent.</li>
       <li>Only the <strong>finished image, with mosaics burned in</strong>, is returned. The unannotated original never is.</li>
       <li>The Return button appears <strong>only in notes opened from an agent's draft</strong>. Your usual <kbd>⌥⌘4</kbd> notes look exactly the same as they always did.</li>
       <li><code>fletchshot-mcp</code> speaks stdio only and uses no network at all. It does not watch your screen, and it does not read FletchShot's documents on its own.</li>
     </ul>
-    <p>What happens to the image after you return it depends on your agent's own settings — if it sends images to its AI backend, that is where this one goes too. Which is the whole point of <strong>looking at it before you return it</strong>.</p>
+    <p>What happens to the image after you return it depends on your agent's own settings — if it sends images to its AI backend, that is where this one goes too. Which is the whole point of <strong>looking at it before you return it</strong>. Burn quietly only when you know you don't need to look.</p>
   </div>
 </section>
 

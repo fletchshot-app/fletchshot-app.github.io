@@ -138,8 +138,15 @@
       <li>A draft note opens. Grab and move the arrows and text as usual.</li>
       <li>When you are done, click <strong>Return</strong> in the toolbar or press <kbd>⌘↩</kbd>. The note closes and the agent gets the finished image. While you are typing text, <kbd>⌘↩</kbd> only commits the text.</li>
     </ul>
-    <h3>The image reaches the agent only when you press Return</h3>
-    <p>FletchShot does not use the network. An image goes to the agent only when you press Return (<kbd>⌘↩</kbd>) in a draft note — never through copy, save, drag, share or Send to Shortcuts. Only the finished image, with mosaics burned in, is returned. Whether the agent then sends it to an AI service depends on that agent’s own settings.</p>
+    <h3>When no touch-up is needed: burn quietly</h3>
+    <p>For light annotations you don’t need to look over, you can ask the agent to “burn it in quietly” (FletchShot 2.5.0 or later). When the agent marks a draft to be burned quietly, FletchShot burns in the annotations without opening a note and returns the image to the same file.</p>
+    <ul>
+      <li>You can reopen a burned image from the FletchShot menu in the menu bar › Agent-Burned Images (the latest 10). Fix it and click <strong>Overwrite</strong> (<kbd>⌘↩</kbd>) to replace the original file with your edits.</li>
+      <li>If you haven’t purchased, your trial has ended, or the image can’t be burned, FletchShot doesn’t fail silently — the usual draft note opens instead.</li>
+      <li>FletchShot has no “always burn quietly” setting. Drafts without that mark open a note, as before.</li>
+    </ul>
+    <h3>The image reaches the agent only when you press Return, or when a draft is burned quietly</h3>
+    <p>FletchShot does not use the network. An image goes to the agent only when you press Return (<kbd>⌘↩</kbd>) in a draft note, or when the agent marked the draft to be burned quietly. A quietly burned image goes back before you see it, so don’t use it for anything you want to check first. Nothing goes through copy, save, drag, share or Send to Shortcuts. Only the finished image, with mosaics burned in, is returned. The copies kept for fixing a burned image (the image before burning and its annotations, the latest 50) stay inside FletchShot and are never given to the agent. Whether the agent then sends the image to an AI service depends on that agent’s own settings.</p>
     <p>The Return button appears only in notes opened from an agent’s draft. Your usual <kbd>⌥⌘4</kbd> notes look exactly the same as before.</p>
   </div>
 </section>
